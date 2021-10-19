@@ -2,7 +2,7 @@
   <v-card
       :loading="loading"
       class="mx-auto my-12"
-      max-width="374"
+      width="374"
   >
     <template slot="progress">
       <v-progress-linear
@@ -12,68 +12,72 @@
       ></v-progress-linear>
     </template>
 
-    <v-img
-        height="250"
-        src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
-    ></v-img>
 
-    <v-card-title>{{prenom}} {{nom}}</v-card-title>
+      <v-img
+          max-width="206" width="206"
+          height="206"
+          :lazy-src="getImgUrl(driverId)"
+          :src="getImgUrl(driverId)"
+      >
+
+        <template v-slot:placeholder>
+          <v-row
+              class="fill-height ma-0"
+              align="center"
+              justify="center"
+          >
+            <v-progress-circular
+                indeterminate
+                color="grey lighten-5"
+            ></v-progress-circular>
+          </v-row>
+        </template>
+      </v-img>
+
+
+
+    <v-card-title>{{fname}} {{lname}}</v-card-title>
 
     <v-card-text>
-      <v-row
-          align="center"
-          class="mx-0"
-      >
-        <v-rating
-            :value="4.5"
-            color="amber"
-            dense
-            half-increments
-            readonly
-            size="14"
-        ></v-rating>
 
-        <div class="grey--text ms-4">
-          4.5 (413)
-        </div>
-      </v-row>
 
-      <div class="my-4 text-subtitle-1">
-        $ • Italian, Cafe
+      <div class="text-subtitle-1">
+        {{ecurie}}
       </div>
 
-      <div>Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio seating.</div>
     </v-card-text>
 
     <v-divider class="mx-4"></v-divider>
 
-    <v-card-title>Tonight's availability</v-card-title>
+    <v-card-title>
 
-    <v-card-text>
-      <v-chip-group
-          v-model="selection"
-          active-class="primary accent-4 white--text"
-          column
-      >
-        <v-chip>5:30PM</v-chip>
+      <v-chip-group>
+        <v-chip style="background-color: #f6cf3e" v-if="position==='1'">
+          <v-icon >mdi-podium-gold</v-icon>  &nbsp;  {{position}}
+        </v-chip>
+        <v-chip style="background-color: #bdbdbb" v-else-if="position==='2'">
+          <v-icon >mdi-podium-silver</v-icon>  &nbsp;  {{position}}
+        </v-chip>
+        <v-chip style="background-color: #b6822f" v-else-if="position==='3'">
+          <v-icon >mdi-podium-bronze</v-icon>  &nbsp;  {{position}}
+        </v-chip>
+        <v-chip  v-else>
+          <v-icon >mdi-podium</v-icon>  &nbsp;  {{position}}
+        </v-chip>
+        <v-chip>
+          <v-icon>mdi-trophy</v-icon>  &nbsp;  {{wins}} wins
+        </v-chip>
+        <v-chip>
+          <v-icon>mdi-counter</v-icon> &nbsp; {{points}} points
+        </v-chip>
 
-        <v-chip>7:30PM</v-chip>
-
-        <v-chip>8:00PM</v-chip>
-
-        <v-chip>9:00PM</v-chip>
       </v-chip-group>
-    </v-card-text>
 
-    <v-card-actions>
-      <v-btn
-          color="deep-purple lighten-2"
-          text
-          @click="reserve"
-      >
-        Reserve
-      </v-btn>
-    </v-card-actions>
+    </v-card-title>
+
+
+
+
   </v-card>
 </template>
 
@@ -81,9 +85,9 @@
 export default {
   data: () => ({
     loading: false,
-    selection: 1,
+    selection: 3,
   }),
-  props : ['prenom', 'nom'],
+  props : ['fname', 'lname', 'nationality','ecurie', 'driverId','wins','position', 'points'],
 
   methods: {
     reserve () {
@@ -91,6 +95,14 @@ export default {
 
       // setTimeout(() => (this.loading = false), 2000)
     },
+    getImgUrl(picture) {
+      // const images = require.context('../assets/img/', false, /\.png$/);
+      // return images('./' + picture + ".png")
+      return  require('../assets/img/drivers/'+picture+'.png')
+    },
+    imageUrlAlt(event) {
+      event.target.src = require('../assets/img/logo.png')
+    }
   },
 }
 </script>

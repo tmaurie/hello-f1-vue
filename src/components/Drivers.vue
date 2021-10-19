@@ -3,11 +3,18 @@
   <v-container>
     <v-row no-gutters>
     <DriverCard
-        v-for="driver in info"
-        :key="driver"
+        v-for="(driver, idx) in info"
+        :key="idx"
         class="driver"
-        :prenom="driver.givenName"
-        :nom="driver.familyName"
+        :class="driver.Constructors[0].constructorId"
+        :fname="driver.Driver.givenName"
+        :lname="driver.Driver.familyName"
+        :nationality="driver.Driver.nationality"
+        :ecurie="driver.Constructors[0].name"
+        :driver-id="driver.Driver.driverId"
+        :wins="driver.wins"
+        :position="driver.position"
+        :points="driver.points"
     >
 
     </DriverCard>
@@ -30,8 +37,8 @@ export default {
   },
   mounted() {
     axios
-        .get('http://ergast.com/api/f1/current/drivers.json')
-        .then(response => (this.info = response.data.MRData.DriverTable.Drivers))
+        .get('https://ergast.com/api/f1/current/driverStandings.json')
+        .then(response => (this.info = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings))
 
   },
   filters: {

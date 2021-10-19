@@ -1,0 +1,41 @@
+.theme--dark.v-card.red_bull {
+  background: linear-gradient(40deg, #03042a 0%, #080623 0%, #170c56 100%);
+}
+
+.theme--dark.v-card.mercedes {
+  background: linear-gradient(40deg, #00d2be 0%, rgba(0, 210, 190, 0.47) 0%, #12e1c6 100%);
+}
+
+.theme--dark.v-card.mclaren {
+  background: linear-gradient(40deg, rgba(162, 82, 41, 0.72) 0%, #b96e00 0%, #fdd08f 100%);
+}
+
+.theme--dark.v-card.ferrari {
+  background: linear-gradient(40deg, #3f0202 0%, #a92525 0%, #e84e4e 100%);
+}
+
+.theme--dark.v-card.alphatauri {
+  background: linear-gradient(40deg, #2b4562 0%, #00294d 0%, #2b4562 100%);
+}
+
+.theme--dark.v-card.williams {
+  background: linear-gradient(40deg, #0090ff 0%, #0090ff 0%, #0090ff 100%);
+}
+
+.theme--dark.v-card.alpine {
+  background: linear-gradient(40deg, #005aff 0%, #082f7c 0%, #005aff 100%);
+}
+
+.theme--dark.v-card.alfa {
+  background: linear-gradient(40deg, #900000 0%, #410303 0%, #900000 100%);
+}
+
+.theme--dark.v-card.haas {
+  background: linear-gradient(40deg, #414040 0%, #504e4e 0%, #bdbaba 100%);
+}
+
+.theme--dark.v-card.aston_martin {
+  background: linear-gradient(40deg, #006f62 0%, #043b36 0%, #006f62 100%);
+}
+
+/*# sourceMappingURL=styles.css.map */

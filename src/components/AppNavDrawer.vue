@@ -9,7 +9,7 @@
         shrink-on-scroll
         prominent
         fade-img-on-scroll
-        :src="require('@/assets/f1-banner2.jpg')"
+        :src="require('@/assets/img/f1-banner2.jpg')"
         scroll-target="#scrolling-techniques-2"
     >
       <template v-slot:img="{ props }">

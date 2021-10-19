@@ -25,8 +25,5 @@ export default {
 </script>
 
 <style>
-#app {
-
-  /*margin-top: 60px;*/
-}
+@import './assets/styles/styles.css';
 </style>

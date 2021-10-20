@@ -13,6 +13,7 @@
     </template>
 
 
+
       <v-img
           max-width="206" width="206"
           height="206"

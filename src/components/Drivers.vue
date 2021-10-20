@@ -1,7 +1,9 @@
 <template>
 
-  <v-container>
-    <v-row no-gutters>
+
+  <v-container >
+
+    <v-row no-gutters v-if="loaded">
     <DriverCard
         v-for="(driver, idx) in info"
         :key="idx"
@@ -19,7 +21,9 @@
 
     </DriverCard>
     </v-row>
+    <v-progress-linear v-else indeterminate></v-progress-linear>
   </v-container>
+
 
 </template>
 
@@ -32,6 +36,7 @@ export default {
   components: {DriverCard},
   data () {
     return {
+      loaded : false,
       info: null
     }
   },
@@ -39,6 +44,8 @@ export default {
     axios
         .get('https://ergast.com/api/f1/current/driverStandings.json')
         .then(response => (this.info = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings))
+        .finally( () => (this.loaded = true))
+
 
   },
   filters: {

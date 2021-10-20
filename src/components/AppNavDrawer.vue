@@ -2,7 +2,6 @@
   <v-content>
 
 
-
     <v-app-bar
         color="primary"
         dark
@@ -48,53 +47,55 @@
           nav
 
       >
-        <v-list-item-group
-            v-model="group"
-            active-class="primary--text "
-        >
-          <v-list-item  v-for="(item, i) in items"
-                        :key="i">
-            <v-list-item-icon>
-              <v-icon v-text="item.icon"></v-icon>
-            </v-list-item-icon>
 
-            <v-list-item-content>
-              <v-list-item-title v-text="item.text"></v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+          <v-list-item-group
+              v-model="group"
+              active-class="primary--text "
+          >
 
-        </v-list-item-group>
+            <v-list-item v-for="(item, i) in items"
+                         :key="i"
+                         :to="item.route"
+            >
+
+
+              <v-list-item-icon>
+                <v-icon v-text="item.icon"></v-icon>
+              </v-list-item-icon>
+
+              <v-list-item-content>
+                <v-list-item-title v-text="item.text"></v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+
+          </v-list-item-group>
+
       </v-list>
     </v-navigation-drawer>
 
-    <Home></Home>
+    <router-view></router-view>
   </v-content>
 
 </template>
 
 <script>
 
-import Home from "@/components/Drivers";
 
 export default {
-  components: {Home},
+
   data: () => ({
     drawer: false,
     group: null,
     selectedItem: 0,
     items: [
-      { text: 'My Files', icon: 'mdi-folder' },
-      { text: 'Shared with me', icon: 'mdi-account-multiple' },
-      { text: 'Starred', icon: 'mdi-star' },
-      { text: 'Recent', icon: 'mdi-history' },
-      { text: 'Offline', icon: 'mdi-check-circle' },
-      { text: 'Uploads', icon: 'mdi-upload' },
-      { text: 'Backups', icon: 'mdi-cloud-upload' },
+      {text: 'Drivers Standings', icon: 'mdi-racing-helmet', route: 'driverStandings'},
+      {text: 'Constructor Standings', icon: 'mdi-car-sports', route: 'constructorStanding'},
+      {text: 'Calendar', icon: 'mdi-calendar', route: 'calendar'},
     ],
   }),
 
   watch: {
-    group () {
+    group() {
       this.drawer = false
     },
   },

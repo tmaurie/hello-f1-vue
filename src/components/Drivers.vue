@@ -21,7 +21,16 @@
 
     </DriverCard>
     </v-row>
-    <v-progress-linear v-else indeterminate></v-progress-linear>
+    <v-row no-gutters v-else>
+    <v-skeleton-loader
+         v-for="i in 20"
+        :key="i"
+         class="mx-auto my-6"
+        width="374"
+        type="card">
+    </v-skeleton-loader>
+    </v-row>
+<!--    <v-progress-linear v-else indeterminate></v-progress-linear>-->
   </v-container>
 
 

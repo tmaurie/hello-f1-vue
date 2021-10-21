@@ -5,6 +5,7 @@ import axios from "axios";
 import VueRouter from 'vue-router';
 import Drivers from "@/components/Drivers";
 import Home from "@/components/Home";
+import Calendar from "@/components/Calendar";
 
 Vue.config.productionTip = false
 Vue.use(VueRouter);
@@ -14,7 +15,8 @@ const router = new VueRouter({
   // base: __dirname,
   routes: [
     { path: '/', component: Home },
-    { path: '/driverStandings', component: Drivers }
+    { path: '/driverStandings', component: Drivers },
+    { path: '/calendar', component: Calendar }
   ]
 });
 

@@ -1,8 +1,10 @@
 <template>
   <v-card
       :loading="loading"
-      class="mx-auto my-12"
+      class="mx-auto my-12 "
       width="374"
+      rounded="xl"
+      :color="getColor(ecurie)"
   >
     <template slot="progress">
       <v-progress-linear
@@ -17,6 +19,7 @@
       <v-img
           max-width="206" width="206"
           height="206"
+
           :lazy-src="getImgUrl(driverId)"
           :src="getImgUrl(driverId)"
       >
@@ -37,7 +40,7 @@
 
 
 
-    <v-card-title>{{fname}} {{lname}}</v-card-title>
+    <v-card-title >{{fname}} {{lname}}</v-card-title>
 
     <v-card-text>
 
@@ -87,12 +90,17 @@ export default {
   data: () => ({
     loading: false,
     selection: 3,
+    colorsName : [
+      {ecurie : 'Red Bull', color : 'indigo'}
+    ],
   }),
   props : ['fname', 'lname', 'nationality','ecurie', 'driverId','wins','position', 'points'],
 
   methods: {
     reserve () {
       this.loading = true
+
+
 
       // setTimeout(() => (this.loading = false), 2000)
     },
@@ -103,10 +111,26 @@ export default {
     },
     imageUrlAlt(event) {
       event.target.src = require('../assets/img/logo.png')
+    },
+    getColor(ecurie){
+      if(ecurie === 'Red Bull'){return 'indigo darken-2 '}
+      if(ecurie === 'Mercedes'){return 'teal accent-3 black--text'}
+      if(ecurie === 'Ferrari'){return 'red'}
+      if(ecurie === 'McLaren'){return 'orange lighten-3'}
+      if(ecurie === 'AlphaTauri'){return 'cyan darken-4'}
+      if(ecurie === 'Alfa Romeo'){return 'red  lighten-1'}
+      if(ecurie === 'Haas F1 Team'){return 'blue-grey lighten-1'}
+      if(ecurie === 'Alpine F1 Team'){return 'blue accent-4'}
+      if(ecurie === 'Williams'){return 'light-blue lighten-2'}
+      if(ecurie === 'Aston Martin'){return 'teal lighten-1'}
     }
+
   },
 }
 </script>
 <style scoped>
+*{
+  font-family: 'Lato',serif;
+}
 
 </style>

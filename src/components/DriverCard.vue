@@ -105,12 +105,7 @@ export default {
       // setTimeout(() => (this.loading = false), 2000)
     },
     getImgUrl(picture) {
-      // const images = require.context('../assets/img/', false, /\.png$/);
-      // return images('./' + picture + ".png")
       return  require('../assets/img/drivers/'+picture+'.png')
-    },
-    imageUrlAlt(event) {
-      event.target.src = require('../assets/img/logo.png')
     },
     getColor(ecurie){
       if(ecurie === 'Red Bull'){return 'indigo darken-2 '}
@@ -129,8 +124,6 @@ export default {
 }
 </script>
 <style scoped>
-*{
-  font-family: 'Lato',serif;
-}
+
 
 </style>

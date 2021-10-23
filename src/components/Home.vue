@@ -7,7 +7,7 @@
 
       <v-card>
         <v-card-title>
-          <v-img  max-width="90"  :src="require('@/assets/img/logo.png')"/>{{lastRace.Circuit.circuitName}}
+          <v-img  max-width="90"  :src="getImgUrl(lastRace.Circuit.circuitId)"/>{{lastRace.Circuit.circuitName}}
         </v-card-title>
 
     <v-data-table
@@ -60,6 +60,11 @@ export default {
 
 
   },
+  methods : {
+    getImgUrl(picture) {
+      return  require('../assets/img/tracks/'+picture+'.png')
+    },
+  }
 
 }
 

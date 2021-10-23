@@ -59,9 +59,9 @@
       </v-list>
       <template v-slot:append>
         <div class="pa-2">
-          <v-btn block>
+          <v-btn block href="https://github.com/tmaurie/hello-f1-vue" target="_blank">
             <v-icon>mdi-github</v-icon>
-            github
+            Github
           </v-btn>
         </div>
       </template>
@@ -75,7 +75,6 @@
         prominent
         fade-img-on-scroll
         :src="require('@/assets/img/f1-banner2.jpg')"
-        scroll-target="#scrolling-techniques-2"
     >
       <template v-slot:img="{ props }">
         <v-img
@@ -101,7 +100,7 @@ export default {
     selectedItem: 0,
     items: [
       {text: 'Drivers Standings', icon: 'mdi-racing-helmet', route: 'driverStandings'},
-      {text: 'Constructor Standings', icon: 'mdi-car-sports', route: 'constructorStanding'},
+      {text: 'Constructor Standings', icon: 'mdi-car-sports', route: 'constructorStandings'},
       {text: 'Calendar', icon: 'mdi-calendar', route: 'calendar'},
     ],
   }),

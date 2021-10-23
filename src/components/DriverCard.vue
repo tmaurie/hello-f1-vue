@@ -4,7 +4,7 @@
       class="mx-auto my-12 "
       width="374"
       rounded="xl"
-      :color="getColor(ecurie)"
+
   >
     <template slot="progress">
       <v-progress-linear
@@ -19,6 +19,7 @@
       <v-img
           max-width="206" width="206"
           height="206"
+          :class="getColor(ecurie)"
 
           :lazy-src="getImgUrl(driverId)"
           :src="getImgUrl(driverId)"
@@ -112,7 +113,7 @@ export default {
       if(ecurie === 'Mercedes'){return 'teal accent-3 black--text'}
       if(ecurie === 'Ferrari'){return 'red'}
       if(ecurie === 'McLaren'){return 'orange lighten-3'}
-      if(ecurie === 'AlphaTauri'){return 'cyan darken-4'}
+      if(ecurie === 'AlphaTauri'){return 'light-blue darken-4'}
       if(ecurie === 'Alfa Romeo'){return 'red  lighten-1'}
       if(ecurie === 'Haas F1 Team'){return 'blue-grey lighten-1'}
       if(ecurie === 'Alpine F1 Team'){return 'blue accent-4'}

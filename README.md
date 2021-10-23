@@ -1,4 +1,7 @@
 # hello-f1-vue
+##
+See live at [hellof1.netlify.app/](https://hellof1.netlify.app/)
+
 
 ## Project setup
 ```
@@ -22,3 +25,4 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+

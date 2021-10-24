@@ -3,7 +3,7 @@
 
   <v-container>
 
-    <v-row no-gutters v-if="loaded">
+    <v-row no-gutters v-if="loaded" >
       <DriverCard
           v-for="(driver, idx) in info"
           :key="idx"
@@ -25,12 +25,11 @@
       <v-skeleton-loader
           v-for="i in 20"
           :key="i"
-          class="mx-auto my-6"
+          class="mx-auto my-6 rounded-xl"
           width="374"
           type="card">
       </v-skeleton-loader>
     </v-row>
-    <!--    <v-progress-linear v-else indeterminate></v-progress-linear>-->
   </v-container>
 
 
@@ -56,11 +55,6 @@ export default {
         .finally(() => (this.loaded = true))
 
 
-  },
-  filters: {
-    currencydecimal(value) {
-      return value.toFixed(2)
-    }
   },
 }
 

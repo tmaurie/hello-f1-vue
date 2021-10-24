@@ -86,7 +86,19 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title>Hello-F1</v-toolbar-title>
+      <v-spacer></v-spacer>
 
+      <v-tooltip bottom>
+        <template v-slot:activator  >
+          <v-switch
+              v-model="$vuetify.theme.dark"
+              color="white"
+              inset
+          ></v-switch>
+        </template>
+        <span>tooltip</span>
+
+      </v-tooltip>
     </v-app-bar>
 
 
@@ -99,9 +111,9 @@ export default {
     group: null,
     selectedItem: 0,
     items: [
-      {text: 'Drivers Standings', icon: 'mdi-racing-helmet', route: 'driverStandings'},
-      {text: 'Constructor Standings', icon: 'mdi-car-sports', route: 'constructorStandings'},
-      {text: 'Calendar', icon: 'mdi-calendar', route: 'calendar'},
+      {text: 'Drivers Standings', icon: 'mdi-racing-helmet', route: '/driverStandings'},
+      {text: 'Constructor Standings', icon: 'mdi-car-sports', route: '/constructorStandings'},
+      {text: 'Calendar', icon: 'mdi-calendar', route: '/calendar'},
     ],
   }),
   watch: {

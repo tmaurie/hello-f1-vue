@@ -14,7 +14,7 @@
           rounded="xl"
 
       >
-        <v-img class="ma-4" :src='getImgUrl(constructor.Constructor.constructorId)'></v-img>
+        <v-img class="ma-4" :src='getImgUrl(constructor.Constructor.constructorId)' :lazy-src='getImgUrl(constructor.Constructor.constructorId)' ></v-img>
         <v-divider></v-divider>
        <v-card-title  :class="getColor(constructor.Constructor.name)">
          {{constructor.Constructor.name}}

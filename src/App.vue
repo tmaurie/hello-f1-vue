@@ -35,7 +35,6 @@
 import AppNavDrawer from "@/components/AppNavDrawer";
 
 export default {
-
   name: 'App',
   components: {
     AppNavDrawer

@@ -12,9 +12,14 @@
           outlined
           elevation="3"
           rounded="xl"
-
+          :to="'results/' + race.round" append
       >
         <v-list-item three-line>
+          <v-img
+            max-width="90"
+            class="mr-3"
+            :src="getImgUrl(race.Circuit.circuitId)"
+        ></v-img>
           <v-list-item-content>
             <div class="text-overline mb-4">
               {{race.date }}
@@ -25,10 +30,7 @@
             <v-list-item-subtitle>{{race.Circuit.circuitName}}</v-list-item-subtitle>
           </v-list-item-content>
 
-          <v-img
-              max-width="90"
-              :src="getImgUrl(race.Circuit.circuitId)"
-          ></v-img>
+
         </v-list-item>
 
         <v-card-actions>
@@ -36,6 +38,7 @@
               outlined
               rounded
               text
+              disabled
           >
             Round {{race.round}}
           </v-btn>

@@ -8,6 +8,7 @@ import Home from "@/components/Home";
 import Calendar from "@/components/Calendar";
 import vueAwesomeCountdown from 'vue-awesome-countdown'
 import Constructors from "@/components/Constructors";
+import Results from "@/components/Results";
 
 Vue.use(vueAwesomeCountdown, 'vac') // Component name, `countdown` and `vac` by default
 Vue.config.productionTip = false
@@ -20,7 +21,8 @@ const router = new VueRouter({
     { path: '/', component: Home },
     { path: '/driverStandings', component: Drivers },
     { path: '/constructorStandings', component: Constructors },
-    { path: '/calendar', component: Calendar }
+    { path: '/calendar', component: Calendar },
+    { path: '/calendar/results/:id', component: Results, name : 'results' }
   ]
 });
 

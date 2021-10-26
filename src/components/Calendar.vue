@@ -1,6 +1,12 @@
 <template>
 
   <v-container>
+    <v-banner>
+      <span class="text-h4 text-center">Calendar</span>
+    </v-banner>
+    <v-subheader>Click on a race to see results</v-subheader>
+
+
     <v-row no-gutters justify="space-around">
 
 

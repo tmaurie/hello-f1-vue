@@ -3,6 +3,10 @@
 
   <v-container>
 
+    <v-banner>
+      <span class="text-h4 text-center">Driver's standings</span>
+    </v-banner>
+
     <v-row no-gutters v-if="loaded" >
       <DriverCard
           v-for="(driver, idx) in info"

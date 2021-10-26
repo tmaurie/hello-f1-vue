@@ -1,60 +1,33 @@
 <template>
 
   <v-card
-
-      :loading="loading"
       class="mx-auto my-4 "
-      width="374"
+      width="500"
       rounded="xl"
-
   >
+    <div class="d-flex  ">
 
-    <v-row >
-      <v-col class="shrink">
+      <v-avatar
+          class="rounded-l-xl rounded-0"
+          max-width="206" width="206"
+          height="206"
+      >
         <v-img
-            max-width="206" width="206"
-            height="206"
             :class="getColor(ecurie)"
-            class="rounded-tl-xl "
+            :src="getImgUrl(driverId)"></v-img>
+      </v-avatar>
+      <div class="flex">
 
-            :lazy-src="getImgUrl(driverId)"
-            :src="getImgUrl(driverId)"
-        >
+        <v-card-title
+            class="text-h5"
+        >{{ fname }} {{ lname }}
+        </v-card-title>
 
-          <template v-slot:placeholder>
-            <v-row
-                class="fill-height ma-0"
-                align="center"
-                justify="center"
-            >
-              <v-progress-circular
-                  indeterminate
-                  color="grey lighten-5"
-              ></v-progress-circular>
-            </v-row>
-          </template>
-        </v-img>
+        <v-card-text>{{ ecurie }}</v-card-text>
 
-      </v-col>
+        <v-divider></v-divider>
 
-      <v-col>
-
-
-        <v-card-title>{{ fname }} {{ lname }}</v-card-title>
-
-        <v-card-text>
-
-
-          <div class="text-subtitle-1">
-            {{ ecurie }}
-          </div>
-
-        </v-card-text>
-
-        <v-divider class="mx-4"></v-divider>
-
-        <v-card-title>
-
+        <v-card-actions>
           <v-chip-group>
             <v-chip style="background-color: #f6cf3e" v-if="position==='1'">
               <v-icon>mdi-podium-gold</v-icon> &nbsp; {{ position }}
@@ -74,15 +47,11 @@
             <v-chip>
               <v-icon>mdi-counter</v-icon> &nbsp; {{ points }} points
             </v-chip>
-
           </v-chip-group>
 
-        </v-card-title>
-
-      </v-col>
-    </v-row>
-
-
+        </v-card-actions>
+      </div>
+    </div>
   </v-card>
 </template>
 
@@ -108,35 +77,27 @@ export default {
       return require('../assets/img/drivers/' + picture + '.png')
     },
     getColor(ecurie) {
-      if (ecurie === 'Red Bull') {
-        return 'indigo darken-2 '
-      }
-      if (ecurie === 'Mercedes') {
-        return 'teal accent-3 black--text'
-      }
-      if (ecurie === 'Ferrari') {
-        return 'red'
-      }
-      if (ecurie === 'McLaren') {
-        return 'orange lighten-3'
-      }
-      if (ecurie === 'AlphaTauri') {
-        return 'light-blue darken-4'
-      }
-      if (ecurie === 'Alfa Romeo') {
-        return 'red  lighten-1'
-      }
-      if (ecurie === 'Haas F1 Team') {
-        return 'blue-grey lighten-1'
-      }
-      if (ecurie === 'Alpine F1 Team') {
-        return 'blue accent-4'
-      }
-      if (ecurie === 'Williams') {
-        return 'light-blue lighten-2'
-      }
-      if (ecurie === 'Aston Martin') {
-        return 'teal lighten-1'
+      switch (ecurie) {
+        case 'Red Bull' :
+          return 'indigo darken-2'
+        case 'Mercedes' :
+          return 'teal accent-3'
+        case 'Ferrari' :
+          return 'red'
+        case 'McLaren' :
+          return 'orange lighten-3'
+        case 'AlphaTauri' :
+          return 'light-blue darken-4'
+        case 'Alfa Romeo' :
+          return 'red  lighten-1'
+        case 'Haas F1 Team' :
+          return 'blue-grey lighten-1'
+        case 'Alpine F1 Team' :
+          return 'indigo darken-2'
+        case 'Williams' :
+          return 'blue accent-4'
+        case 'Aston Martin' :
+          return 'teal lighten-1'
       }
     }
 

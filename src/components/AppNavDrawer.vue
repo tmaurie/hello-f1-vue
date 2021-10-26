@@ -88,17 +88,12 @@
       <v-toolbar-title>Hello-F1</v-toolbar-title>
       <v-spacer></v-spacer>
 
-      <v-tooltip bottom>
-        <template v-slot:activator  >
-          <v-switch
-              v-model="$vuetify.theme.dark"
-              color="white"
-              inset
-          ></v-switch>
-        </template>
-        <span>tooltip</span>
+      <v-switch
+          v-model="$vuetify.theme.dark"
+          color="white"
+          inset
+      ></v-switch>
 
-      </v-tooltip>
     </v-app-bar>
 
 

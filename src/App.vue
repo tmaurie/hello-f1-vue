@@ -2,19 +2,17 @@
 
   <v-app>
 
+    <!--    appBar & navDrawer-->
     <AppNavDrawer/>
 
-
-    <v-main
-    >
-
-
+    <!--main view / router-->
+    <v-main>
       <v-container fluid>
-
         <router-view></router-view>
       </v-container>
     </v-main>
 
+    <!--    footer-->
     <v-footer>
       <v-col
           class="text-center"
@@ -29,9 +27,6 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-//import AppNavDrawer from "@/components/AppNavDrawer";
-
 import AppNavDrawer from "@/components/AppNavDrawer";
 
 export default {

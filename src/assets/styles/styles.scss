@@ -38,4 +38,11 @@
 //.theme--dark.v-card.aston_martin{
 //  background: linear-gradient(40deg, #006f62 0%, #043b36 0%, #006f62 100%);
 //}
-
+@import url('https://fonts.googleapis.com/css?family=Oxygen:300,400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Mansalva&amp;display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+$body-font-family: 'Lato';
+$title-font: 'Comfortaa';
+:root {
+  font-family: $body-font-family, sans-serif !important;
+}

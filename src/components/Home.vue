@@ -14,10 +14,10 @@
               v-slot:process="{ timeObj }">
 
             <v-chip-group>
-              <v-chip x-large>{{ `${timeObj.d}` }} days</v-chip>
-              <v-chip x-large>{{ `${timeObj.h}` }} hours</v-chip>
-              <v-chip x-large>{{ `${timeObj.m}` }} minutes</v-chip>
-              <v-chip x-large color="primary">{{ `${timeObj.s}` }} seconds</v-chip>
+              <v-chip :x-large="$vuetify.breakpoint.smAndUp">{{ `${timeObj.d}` }} days</v-chip>
+              <v-chip :x-large="$vuetify.breakpoint.smAndUp">{{ `${timeObj.h}` }} hours</v-chip>
+              <v-chip :x-large="$vuetify.breakpoint.smAndUp">{{ `${timeObj.m}` }} minutes</v-chip>
+              <v-chip :x-large="$vuetify.breakpoint.smAndUp" color="primary">{{ `${timeObj.s}` }} seconds</v-chip>
             </v-chip-group>
 
           </template>

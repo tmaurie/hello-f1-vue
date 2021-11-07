@@ -7,8 +7,21 @@
 
 
     <v-card v-if="!nextRaceLoading">
-      <v-row justify="space-around">
 
+      <v-row justify="space-around">
+        <v-card-title class="d-flex flex-column">
+          <h3>
+            Next Race: {{ nextRace[0].raceName }}
+          </h3>
+
+          <p>
+            {{ nextRace[0].Circuit.circuitName }} |
+            {{ nextRace[0].date }}
+            <span class="font-italic text-muted">({{ nextRaceUTCtime }} UTC)</span>
+          </p>
+
+
+        </v-card-title>
         <vac :end-time="new Date(nextRaceTimeDate).getTime() ">
           <template
               v-slot:process="{ timeObj }">
@@ -33,7 +46,9 @@
 
       <v-card-title>
         <v-img max-width="90" :src="getImgUrl(lastRace.Circuit.circuitId)"/>
-        {{ lastRace.Circuit.circuitName }}
+        <h3> {{ lastRace.raceName }}</h3>  &nbsp;| {{ lastRace.Circuit.circuitName }}
+
+
       </v-card-title>
 
       <v-data-table

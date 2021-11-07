@@ -8,15 +8,17 @@
     <div class="d-flex  ">
 
       <v-avatar
+          v-if="$vuetify.breakpoint.smAndUp"
           class="rounded-l-xl rounded-0"
-          max-width="206" width="206"
+          width="206"
           height="206"
       >
         <v-img
+
             :class="getColor(ecurie)"
             :src="getImgUrl(driverId)"></v-img>
       </v-avatar>
-      <div class="flex">
+      <div class="flex flex-shrink-1">
 
         <v-card-title
             class="text-h5"
@@ -27,8 +29,8 @@
 
         <v-divider></v-divider>
 
-        <v-card-actions>
-          <v-chip-group>
+        <v-card-actions >
+          <v-chip-group >
             <v-chip style="background-color: #f6cf3e" v-if="position==='1'">
               <v-icon>mdi-podium-gold</v-icon> &nbsp; {{ position }}
             </v-chip>

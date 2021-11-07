@@ -9,7 +9,7 @@
 
     <v-timeline
         dense
-        v-if="this.$vuetify.breakpoint.name === 'xs'">
+        v-if="$vuetify.breakpoint.xsOnly">
       <v-timeline-item
           v-for="(race, idx) in races"
           :key="idx"

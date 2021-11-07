@@ -22,18 +22,19 @@
                :src='getImgUrl(constructor.Constructor.constructorId)'
                :lazy-src='getImgUrl(constructor.Constructor.constructorId)'></v-img>
         <v-divider></v-divider>
-        <v-card-title >
+        <v-card-title>
           {{ constructor.Constructor.name }}
           <v-chip-group>
-            <v-chip><v-icon>mdi-podium</v-icon> &nbsp; {{ constructor.position }} </v-chip>
-            <v-chip><v-icon>mdi-counter</v-icon> &nbsp; {{ constructor.points }} points</v-chip>
-
-
-            <v-chip><v-icon>mdi-trophy</v-icon> &nbsp; {{ constructor.wins }} wins</v-chip>
+            <v-chip>
+              <v-icon>mdi-podium</v-icon> &nbsp; {{ constructor.position }}
+            </v-chip>
+            <v-chip>
+              <v-icon>mdi-counter</v-icon> &nbsp; {{ constructor.points }} points
+            </v-chip>
+            <v-chip>
+              <v-icon>mdi-trophy</v-icon> &nbsp; {{ constructor.wins }} wins
+            </v-chip>
           </v-chip-group>
-
-
-
         </v-card-title>
 
       </v-card>

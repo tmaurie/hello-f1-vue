@@ -36,7 +36,7 @@
           </template>
           <template
               v-slot:finish>
-            <span>Done!</span>
+            <span>Race in progress</span>
           </template>
         </vac>
       </v-row>
@@ -58,7 +58,14 @@
           :disable-sort="true"
           loading-text="Loading... Please wait"
       >
-
+        <template v-slot:item.Constructor.name="{ item }">
+          <v-chip
+              :color="getColor(item.Constructor.name)"
+              dark
+          >
+            {{ item.Constructor.name }}
+          </v-chip>
+        </template>
       </v-data-table>
 
     </v-card>
@@ -116,6 +123,30 @@ export default {
     getImgUrl(picture) {
       return require('../assets/img/tracks/' + picture + '.png')
     },
+    getColor(ecurie) {
+      switch (ecurie) {
+        case 'Red Bull' :
+          return 'indigo darken-2'
+        case 'Mercedes' :
+          return 'teal accent-3'
+        case 'Ferrari' :
+          return 'red'
+        case 'McLaren' :
+          return 'orange lighten-3'
+        case 'AlphaTauri' :
+          return 'light-blue darken-4'
+        case 'Alfa Romeo' :
+          return 'red  lighten-1'
+        case 'Haas F1 Team' :
+          return 'blue-grey lighten-1'
+        case 'Alpine F1 Team' :
+          return 'indigo darken-2'
+        case 'Williams' :
+          return 'blue accent-4'
+        case 'Aston Martin' :
+          return 'teal lighten-1'
+      }
+    }
 
   }
 

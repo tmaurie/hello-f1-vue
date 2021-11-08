@@ -5,7 +5,7 @@
       width="500"
       rounded="xl"
   >
-    <div class="d-flex  ">
+    <div class="d-flex">
 
       <v-avatar
           v-if="$vuetify.breakpoint.smAndUp"
@@ -62,9 +62,6 @@ export default {
   data: () => ({
     loading: false,
     selection: 3,
-    colorsName: [
-      {ecurie: 'Red Bull', color: 'indigo'}
-    ],
   }),
   props: ['fname', 'lname', 'nationality', 'ecurie', 'driverId', 'wins', 'position', 'points'],
 

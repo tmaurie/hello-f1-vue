@@ -19,6 +19,7 @@
           cols="12"
       >
         {{ new Date().getFullYear() }} — <strong>Hello F1</strong>
+        <span >- powered by <a href="https://ergast.com/mrd/">ergast.com/mrd/</a> </span>
       </v-col>
     </v-footer>
 

@@ -71,7 +71,7 @@
 
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Hello-F1</v-toolbar-title>
+      <v-toolbar-title id="title--f1">Hello F1</v-toolbar-title>
       <v-spacer></v-spacer>
 
       <v-btn icon @click="$vuetify.theme.dark = !$vuetify.theme.dark">
@@ -106,3 +106,9 @@ export default {
   },
 }
 </script>
+<style>
+#title--f1{
+  font-family: "Grenze", sans-serif;
+  font-size: 2.5rem;
+}
+</style>

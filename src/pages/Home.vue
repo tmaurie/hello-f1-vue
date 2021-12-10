@@ -1,75 +1,79 @@
 <template>
+  <v-img class="v-img--blurred" id="hero" :aspect-ratio="10"
+         :src="require('@/assets/img/f1-bg-3.jpg')"
+         gradient="to top, rgba(var(--bg-color),1) 15%, rgba(var(--bg-color),.7) 100%">
+    <v-container
+        id="mycontainer"
 
-  <v-container
-      id="mycontainer"
-
-  >
+    >
 
 
-    <v-card v-if="!nextRaceLoading">
+      <v-card class="mt-2" v-if="!nextRaceLoading">
 
-      <v-row justify="space-around">
-        <v-card-title class="d-flex flex-column">
-          <h3>
-            Next Race: {{ nextRace[0].raceName }}
-          </h3>
+        <v-row justify="space-around">
+          <v-card-title class="d-flex flex-column">
+            <h3>
+              Next Race: {{ nextRace[0].raceName }}
+            </h3>
 
-          <p>
-            {{ nextRace[0].Circuit.circuitName }} |
-            {{ nextRace[0].date }}
-            <span class="font-italic text-muted">({{ nextRaceUTCtime }} UTC)</span>
-          </p>
+            <p>
+              {{ nextRace[0].Circuit.circuitName }} |
+              {{ nextRace[0].date }}
+              <span class="font-italic text-muted">({{ nextRaceUTCtime }} UTC)</span>
+            </p>
+
+
+          </v-card-title>
+          <vac :end-time="new Date(nextRaceTimeDate).getTime() ">
+            <template
+                v-slot:process="{ timeObj }">
+
+              <v-chip-group>
+                <v-chip :x-large="$vuetify.breakpoint.smAndUp">{{ `${timeObj.d}` }} days</v-chip>
+                <v-chip :x-large="$vuetify.breakpoint.smAndUp">{{ `${timeObj.h}` }} hours</v-chip>
+                <v-chip :x-large="$vuetify.breakpoint.smAndUp">{{ `${timeObj.m}` }} minutes</v-chip>
+                <v-chip :x-large="$vuetify.breakpoint.smAndUp" color="primary">{{ `${timeObj.s}` }} seconds</v-chip>
+              </v-chip-group>
+
+            </template>
+            <template
+                v-slot:finish>
+              <span>Race in progress</span>
+            </template>
+          </vac>
+        </v-row>
+      </v-card>
+      <br>
+      <v-card v-if="!loading">
+
+        <v-card-title>
+          <v-img max-width="90" :src="getImgUrl(lastRace.Circuit.circuitId)"/>
+          <h3> {{ lastRace.raceName }}</h3> &nbsp;| {{ lastRace.Circuit.circuitName }}
 
 
         </v-card-title>
-        <vac :end-time="new Date(nextRaceTimeDate).getTime() ">
-          <template
-              v-slot:process="{ timeObj }">
 
-            <v-chip-group>
-              <v-chip :x-large="$vuetify.breakpoint.smAndUp">{{ `${timeObj.d}` }} days</v-chip>
-              <v-chip :x-large="$vuetify.breakpoint.smAndUp">{{ `${timeObj.h}` }} hours</v-chip>
-              <v-chip :x-large="$vuetify.breakpoint.smAndUp">{{ `${timeObj.m}` }} minutes</v-chip>
-              <v-chip :x-large="$vuetify.breakpoint.smAndUp" color="primary">{{ `${timeObj.s}` }} seconds</v-chip>
-            </v-chip-group>
-
+        <v-data-table
+            :headers="headers"
+            :items="results"
+            :loading="loading"
+            :disable-sort="true"
+            loading-text="Loading... Please wait"
+        >
+          <template v-slot:item.Constructor.name="{ item }">
+            <v-chip
+                :color="getColor(item.Constructor.name)"
+                dark
+            >
+              {{ item.Constructor.name }}
+            </v-chip>
           </template>
-          <template
-              v-slot:finish>
-            <span>Race in progress</span>
-          </template>
-        </vac>
-      </v-row>
-    </v-card>
-    <br>
-    <v-card v-if="!loading">
+        </v-data-table>
 
-      <v-card-title>
-        <v-img max-width="90" :src="getImgUrl(lastRace.Circuit.circuitId)"/>
-        <h3> {{ lastRace.raceName }}</h3>  &nbsp;| {{ lastRace.Circuit.circuitName }}
+      </v-card>
+    </v-container>
+  </v-img>
 
-
-      </v-card-title>
-
-      <v-data-table
-          :headers="headers"
-          :items="results"
-          :loading="loading"
-          :disable-sort="true"
-          loading-text="Loading... Please wait"
-      >
-        <template v-slot:item.Constructor.name="{ item }">
-          <v-chip
-              :color="getColor(item.Constructor.name)"
-              dark
-          >
-            {{ item.Constructor.name }}
-          </v-chip>
-        </template>
-      </v-data-table>
-
-    </v-card>
-  </v-container>
 </template>
 
 <script>

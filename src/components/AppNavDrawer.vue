@@ -29,8 +29,6 @@
       <v-divider></v-divider>
       <v-list
           nav
-          rounded
-
       >
 
         <v-list-item-group
@@ -88,11 +86,13 @@
       <v-toolbar-title>Hello-F1</v-toolbar-title>
       <v-spacer></v-spacer>
 
-      <v-switch
-          v-model="$vuetify.theme.dark"
-          color="white"
-          inset
-      ></v-switch>
+      <v-btn icon @click="$vuetify.theme.dark = !$vuetify.theme.dark">
+
+        <v-icon>
+          {{ $vuetify.theme.dark ? "mdi-white-balance-sunny" : "mdi-brightness-3" }}
+        </v-icon>
+
+      </v-btn>
 
     </v-app-bar>
 

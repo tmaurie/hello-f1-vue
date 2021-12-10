@@ -4,6 +4,7 @@
       class="mx-auto my-4 "
       width="500"
       rounded="xl"
+      elevation="4"
   >
     <div class="d-flex">
 

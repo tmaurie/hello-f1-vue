@@ -3,11 +3,11 @@ import App from './App.vue'
 import vuetify from '@/plugins/vuetify' // path to vuetify export
 import axios from "axios";
 import VueRouter from 'vue-router';
-import Drivers from "@/components/Drivers";
-import Home from "@/components/Home";
+import Drivers from "@/pages/Drivers";
+import Home from "@/pages/Home";
 import Calendar from "@/components/Calendar";
 import vueAwesomeCountdown from 'vue-awesome-countdown'
-import Constructors from "@/components/Constructors";
+import Constructors from "@/pages/Constructors";
 import Results from "@/components/Results";
 
 Vue.use(vueAwesomeCountdown, 'vac') // Component name, `countdown` and `vac` by default

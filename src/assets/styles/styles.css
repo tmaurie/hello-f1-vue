@@ -1,8 +1,20 @@
-@import url("https://fonts.googleapis.com/css?family=Oxygen:300,400,700&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Mansalva&amp;display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
-:root {
-  font-family: "Lato", sans-serif !important;
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,700&display=swap");
+#app {
+  font-family: "Poppins", sans-serif !important;
+}
+
+.theme--light {
+  --bg-color: 255, 255, 255;
+  --font-color: 18, 18, 18;
+}
+
+path {
+  fill: rgb(var(--font-color));
+}
+
+.theme--dark {
+  --bg-color: 18, 18, 18;
+  --font-color: 255, 255, 255;
 }
 
 /*# sourceMappingURL=styles.css.map */

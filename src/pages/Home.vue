@@ -43,10 +43,10 @@
           </vac>
         </v-row>
       </v-card>
-      <br>
       <v-card v-if="!loading">
 
         <v-card-title>
+
           <v-img max-width="90" :src="getImgUrl(lastRace.Circuit.circuitId)"/>
           <h3> {{ lastRace.raceName }}</h3> &nbsp;| {{ lastRace.Circuit.circuitName }}
 
@@ -100,30 +100,34 @@ export default {
     }
   },
 
+
   mounted() {
+   this.getLastResults()
+   this.getNextRace()
 
-    axios
-        .get('https://ergast.com/api/f1/current/last/results.json')
-        .then((response) => {
-          this.loading = false
-          this.lastRace = response.data.MRData.RaceTable.Races[0]
-          this.results = response.data.MRData.RaceTable.Races[0].Results
-        });
-
-    axios
-        .get('https://ergast.com/api/f1/current/next.json')
-        .then((response) => {
-          this.nextRaceLoading = false
-          this.nextRace = response.data.MRData.RaceTable.Races
-          this.nextRaceTimeDate = this.nextRaceTime.concat(
-              this.nextRace[0].date, 'T', this.nextRace[0].time
-          );
-
-        });
-
-
-  },
+ },
   methods: {
+    getLastResults(){
+      axios
+          .get('https://ergast.com/api/f1/current/last/results.json')
+          .then((response) => {
+            this.loading = false
+            this.lastRace = response.data.MRData.RaceTable.Races[0]
+            this.results = response.data.MRData.RaceTable.Races[0].Results
+          });
+    },
+    getNextRace(){
+      axios
+          .get('https://ergast.com/api/f1/current/next.json')
+          .then((response) => {
+            this.nextRaceLoading = false
+            this.nextRace = response.data.MRData.RaceTable.Races
+            this.nextRaceTimeDate = this.nextRaceTime.concat(
+                this.nextRace[0].date, 'T', this.nextRace[0].time
+            );
+
+          });
+    },
     getImgUrl(picture) {
       return require('../assets/img/tracks/' + picture + '.png')
     },

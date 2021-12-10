@@ -33,7 +33,7 @@
 
         <v-list-item-group
             v-model="group"
-            active-class="primary--text "
+            active-class="primary--text"
         >
 
           <v-list-item
@@ -55,6 +55,16 @@
         </v-list-item-group>
 
       </v-list>
+      <v-divider></v-divider>
+      <v-list-item to="/news">
+        <v-list-item-icon>
+          <v-icon>mdi-newspaper</v-icon>
+        </v-list-item-icon>
+
+        <v-list-item-content>
+          <v-list-item-title>Latest news</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
       <template v-slot:append>
         <div class="pa-2">
           <v-btn block href="https://github.com/tmaurie/hello-f1-vue" target="_blank">

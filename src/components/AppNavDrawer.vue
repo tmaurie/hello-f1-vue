@@ -4,6 +4,7 @@
         app
         v-model="drawer"
         temporary
+        width="auto"
     >
       <v-list-item>
         <v-list-item-content>

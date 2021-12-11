@@ -20,7 +20,7 @@
       </v-data-table>
 
     </v-card>
-    <v-card v-else>pas encore de résultats</v-card>
+    <h1 v-else>No results yet</h1>
 
   </v-container>
 </template>

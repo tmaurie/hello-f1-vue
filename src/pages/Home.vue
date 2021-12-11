@@ -29,7 +29,8 @@
                 v-slot:process="{ timeObj }">
 
               <v-chip-group>
-                <v-chip :x-large="$vuetify.breakpoint.smAndUp">{{ `${timeObj.d}` }} days</v-chip>
+                <v-chip :x-large="$vuetify.breakpoint.smAndUp"><span
+                    v-text="timeObj.d > 1 ? timeObj.d + ' days' : timeObj.d +' day' "/></v-chip>
                 <v-chip :x-large="$vuetify.breakpoint.smAndUp">{{ `${timeObj.h}` }} hours</v-chip>
                 <v-chip :x-large="$vuetify.breakpoint.smAndUp">{{ `${timeObj.m}` }} minutes</v-chip>
                 <v-chip :x-large="$vuetify.breakpoint.smAndUp" color="primary">{{ `${timeObj.s}` }} seconds</v-chip>
@@ -43,7 +44,10 @@
           </vac>
         </v-row>
       </v-card>
-      <v-card v-if="!loading">
+      <v-card class="mt-8" v-if="!loading">
+        <v-row justify="center">
+          <h1 id="">Last Race Results</h1>
+        </v-row>
 
         <v-card-title>
 
@@ -53,22 +57,42 @@
 
         </v-card-title>
 
-        <v-data-table
-            :headers="headers"
-            :items="results"
-            :loading="loading"
-            :disable-sort="true"
-            loading-text="Loading... Please wait"
-        >
-          <template v-slot:item.Constructor.name="{ item }">
-            <v-chip
-                :color="getColor(item.Constructor.name)"
-                dark
+        <v-simple-table>
+          <template v-slot:default>
+            <thead>
+            <tr>
+              <th class="text-left">Pos.</th>
+              <th class="text-left">Driver</th>
+              <th class="text-left">Constructor</th>
+              <th class="text-left">Time</th>
+              <th class="text-left">Pts.</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr
+                v-for="(item,idx) in results"
+                :key="idx"
             >
-              {{ item.Constructor.name }}
-            </v-chip>
+              <td>{{ item.position }}</td>
+              <td v-if="$vuetify.breakpoint.xsOnly">{{ item.Driver.code  }}</td>
+              <td v-else>{{ item.Driver.familyName  }}</td>
+              <td>
+                <v-chip
+                    :color="getColor(item.Constructor.name)"
+                    dark
+                >
+                  {{ item.Constructor.name }}
+                </v-chip>
+              </td>
+              <td v-if="item.Time"><v-chip :color="item.FastestLap.rank === '1' ? 'purple' : ''">{{ item.Time.time }}</v-chip></td>
+              <td v-else>{{ item.status }}</td>
+              <td>{{ item.points }}</td>
+            </tr>
+
+            </tbody>
           </template>
-        </v-data-table>
+
+        </v-simple-table>
 
       </v-card>
     </v-container>
@@ -94,7 +118,6 @@ export default {
         {text: 'Pos.', value: 'position', align: 'start', sortable: false},
         {text: 'Driver', value: 'Driver.familyName'},
         {text: 'Constructor', value: 'Constructor.name'},
-        {text: 'Time', value: 'Time.time'},
         {text: 'Pts.', value: 'points'},
       ]
     }
@@ -102,12 +125,17 @@ export default {
 
 
   mounted() {
-   this.getLastResults()
-   this.getNextRace()
+    this.getLastResults()
+    this.getNextRace()
+    this.getStatus()
 
- },
+
+  },
   methods: {
-    getLastResults(){
+    getStatus(){
+       return   "Time.time"
+    },
+    getLastResults() {
       axios
           .get('https://ergast.com/api/f1/current/last/results.json')
           .then((response) => {
@@ -116,7 +144,7 @@ export default {
             this.results = response.data.MRData.RaceTable.Races[0].Results
           });
     },
-    getNextRace(){
+    getNextRace() {
       axios
           .get('https://ergast.com/api/f1/current/next.json')
           .then((response) => {
@@ -166,5 +194,8 @@ export default {
 <style scoped>
 #mycontainer {
   max-width: 1024px;
+}
+#customTitle{
+  letter-spacing: 10px;
 }
 </style>

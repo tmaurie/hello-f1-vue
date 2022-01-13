@@ -2,9 +2,14 @@
   <div>
     <v-navigation-drawer
         app
+        floating
+        class="rounded-lg"
+        :class='{ "my-4": $vuetify.breakpoint.mdAndUp, "my-2": $vuetify.breakpoint.smAndDown, "mx-4": $vuetify.breakpoint.mdAndUp && drawer, "mx-2": $vuetify.breakpoint.smAndDown && drawer }'
+        overlay-opacity=".75"
         v-model="drawer"
+        :width='$vuetify.breakpoint.smAndDown ? 310 : 360'
+        :height='`calc(100vh - ${$vuetify.breakpoint.smAndDown ? "16" : "32"}px)`'
         temporary
-        width="auto"
     >
       <v-list-item>
         <v-list-item-content>

@@ -7,7 +7,7 @@
       <span class="text-h4 text-center">Driver's standings</span>
     </v-banner>
 
-    <v-row no-gutters v-if="loaded" >
+    <v-row no-gutters v-if="loaded" justify="center">
       <DriverCard
           v-for="(driver, idx) in info"
           :key="idx"
@@ -25,12 +25,12 @@
 
       </DriverCard>
     </v-row>
-    <v-row no-gutters v-else>
+    <v-row no-gutters justify="center" v-else>
       <v-skeleton-loader
           v-for="i in 20"
           :key="i"
-          class="mx-auto my-6 rounded-xl"
-          width="374"
+          class="pa-1"
+          width="500"
           type="card">
       </v-skeleton-loader>
     </v-row>

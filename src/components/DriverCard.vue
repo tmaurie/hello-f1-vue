@@ -1,64 +1,72 @@
 <template>
 
-  <v-card
-      class="mx-auto my-4 "
-      width="500"
-      rounded="xl"
-      elevation="4"
+  <v-hover
+      v-slot:default="{ hover }"
+
   >
-    <div class="d-flex">
+    <v-card
+        flat width="500"
+        :color="hover ? getColor(ecurie): 'transparent'"
+    >
+      <v-container fluid class="pa-1 ">
+        <v-row>
+          <v-col cols="12">
+            <v-card elevation="10">
+              <div class="d-flex flex-no-wrap justify-space-between">
 
-      <v-avatar
-          v-if="$vuetify.breakpoint.smAndUp"
-          class="rounded-l-xl rounded-0"
-          width="206"
-          height="206"
-      >
-        <v-img
+                <div>
+                  <v-card-title
+                      class="text-h5"
+                  >{{ fname }} {{ lname }}
+                  </v-card-title>
 
-            :class="getColor(ecurie)"
-            :src="getImgUrl(driverId)"></v-img>
-      </v-avatar>
-      <div class="flex flex-shrink-1">
+                  <v-card-subtitle v-text="ecurie"></v-card-subtitle>
 
-        <v-card-title
-            class="text-h5"
-        >{{ fname }} {{ lname }}
-        </v-card-title>
+                  <v-card-actions >
+                    <v-chip-group >
+                      <v-chip style="background-color: #f6cf3e" v-if="position==='1'">
+                        <v-icon>mdi-podium-gold</v-icon> &nbsp; {{ position }}
+                      </v-chip>
+                      <v-chip style="background-color: #bdbdbb" v-else-if="position==='2'">
+                        <v-icon>mdi-podium-silver</v-icon> &nbsp; {{ position }}
+                      </v-chip>
+                      <v-chip style="background-color: #b6822f" v-else-if="position==='3'">
+                        <v-icon>mdi-podium-bronze</v-icon> &nbsp; {{ position }}
+                      </v-chip>
+                      <v-chip v-else>
+                        <v-icon>mdi-podium</v-icon> &nbsp; {{ position }}
+                      </v-chip>
+                      <v-chip>
+                        <v-icon>mdi-trophy</v-icon> &nbsp; {{ wins }} wins
+                      </v-chip>
+                      <v-chip>
+                        <v-icon>mdi-counter</v-icon> &nbsp; {{ points }} pts
+                      </v-chip>
+                    </v-chip-group>
 
-        <v-card-text>{{ ecurie }}</v-card-text>
+                  </v-card-actions>
+                </div>
+                <v-avatar
+                    class="ma-3"
+                    :size="$vuetify.breakpoint.smAndUp ? 150 : 70"
+                    rounded="lg"
+                >
+                  <v-img
+                      :class="getColor(ecurie)"
+                      :src="getImgUrl(driverId)"></v-img>
+                </v-avatar>
 
-        <v-divider></v-divider>
-
-        <v-card-actions >
-          <v-chip-group >
-            <v-chip style="background-color: #f6cf3e" v-if="position==='1'">
-              <v-icon>mdi-podium-gold</v-icon> &nbsp; {{ position }}
-            </v-chip>
-            <v-chip style="background-color: #bdbdbb" v-else-if="position==='2'">
-              <v-icon>mdi-podium-silver</v-icon> &nbsp; {{ position }}
-            </v-chip>
-            <v-chip style="background-color: #b6822f" v-else-if="position==='3'">
-              <v-icon>mdi-podium-bronze</v-icon> &nbsp; {{ position }}
-            </v-chip>
-            <v-chip v-else>
-              <v-icon>mdi-podium</v-icon> &nbsp; {{ position }}
-            </v-chip>
-            <v-chip>
-              <v-icon>mdi-trophy</v-icon> &nbsp; {{ wins }} wins
-            </v-chip>
-            <v-chip>
-              <v-icon>mdi-counter</v-icon> &nbsp; {{ points }} points
-            </v-chip>
-          </v-chip-group>
-
-        </v-card-actions>
-      </div>
-    </div>
-  </v-card>
+              </div>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-card>
+  </v-hover>
 </template>
 
 <script>
+import {getColor} from "@/plugins/services";
 export default {
   data: () => ({
     loading: false,
@@ -69,37 +77,11 @@ export default {
   methods: {
     reserve() {
       this.loading = true
-
-
-      // setTimeout(() => (this.loading = false), 2000)
     },
     getImgUrl(picture) {
       return require('../assets/img/drivers/' + picture + '.png')
     },
-    getColor(ecurie) {
-      switch (ecurie) {
-        case 'Red Bull' :
-          return 'indigo darken-2'
-        case 'Mercedes' :
-          return 'teal accent-3'
-        case 'Ferrari' :
-          return 'red'
-        case 'McLaren' :
-          return 'orange lighten-3'
-        case 'AlphaTauri' :
-          return 'light-blue darken-4'
-        case 'Alfa Romeo' :
-          return 'red  lighten-1'
-        case 'Haas F1 Team' :
-          return 'blue-grey lighten-1'
-        case 'Alpine F1 Team' :
-          return 'indigo darken-2'
-        case 'Williams' :
-          return 'blue accent-4'
-        case 'Aston Martin' :
-          return 'teal lighten-1'
-      }
-    }
+    getColor,
 
   },
 }

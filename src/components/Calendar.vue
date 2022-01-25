@@ -37,7 +37,7 @@
                 {{ race.date }}
               </div>
               <v-list-item-title class="text-h5 mb-1">
-                {{ race.raceName }}
+                {{ race.raceName.replace('Grand Prix', 'GP') }}
               </v-list-item-title>
               <v-list-item-subtitle>{{ race.Circuit.circuitName }}</v-list-item-subtitle>
             </v-list-item-content>
@@ -60,49 +60,62 @@
 
     </v-timeline>
 
-    <v-row no-gutters justify="space-around" v-else>
+    <v-row no-gutters justify="center"  v-else>
 
 
-      <v-card
+      <v-hover
           v-for="(race, idx) in races"
           :key="idx"
-          class="mx-6 my-3"
-          max-width="374"
-          outlined
-          elevation="3"
-          rounded="xl"
-          :to="'results/' + race.round" append
+          v-slot:default="{ hover }"
+
       >
-        <v-list-item three-line>
-          <v-img
-              max-width="90"
-              class="mr-3"
-              :src="getImgUrl(race.Circuit.circuitId)"
-          ></v-img>
-          <v-list-item-content>
-            <div class="text-overline mb-4">
-              {{ race.date }}
-            </div>
-            <v-list-item-title class="text-h5 mb-1">
-              {{ race.raceName }}
-            </v-list-item-title>
-            <v-list-item-subtitle>{{ race.Circuit.circuitName }}</v-list-item-subtitle>
-          </v-list-item-content>
+        <v-card
+            flat width="400" :to="'results/' + race.round" append
+            :color="hover  ?  'primary' : 'transparent'"
+        >
+          <v-container  fluid class="pa-1 ">
+            <v-row >
+              <v-col cols="12">
+
+                <v-card
+                    elevation="10"
+                >
+                  <v-list-item three-line>
+                    <v-img
+                        max-width="90"
+                        class="mr-3"
+                        :src="getImgUrl(race.Circuit.circuitId)"
+                    ></v-img>
+                    <v-list-item-content>
+                      <div class="text-overline mb-4">
+                        {{ race.date }}
+                      </div>
+                      <v-list-item-title class="text-h5 mb-1">
+                        {{ race.raceName.replace('Grand Prix', 'GP') }}
+                      </v-list-item-title>
+                      <v-list-item-subtitle>{{ race.Circuit.circuitName }}</v-list-item-subtitle>
+                    </v-list-item-content>
 
 
-        </v-list-item>
+                  </v-list-item>
 
-        <v-card-actions>
-          <v-btn
-              outlined
-              rounded
-              text
-              disabled
-          >
-            Round {{ race.round }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
+                  <v-card-actions>
+                    <v-btn
+                        outlined
+                        rounded
+                        text
+                        color="primary"
+                    >
+                      Round {{ race.round }}
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card>
+      </v-hover>
+
     </v-row>
   </v-container>
 </template>
@@ -121,7 +134,9 @@ export default {
 
   mounted() {
     axios
-        .get('https://ergast.com/api/f1/current/races.json')
+        .get('current/races.json', {
+          baseURL : process.env.VUE_APP_BASE_URL
+        })
         .then((response) => {
           this.loading = false
           this.races = response.data.MRData.RaceTable.Races

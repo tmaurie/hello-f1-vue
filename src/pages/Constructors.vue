@@ -4,7 +4,7 @@
     <v-banner>
       <span class="text-h4 text-center">Constructors standings</span>
     </v-banner>
-    <v-row no-gutters v-if="!loading" justify="space-around">
+    <v-row no-gutters v-if="!loading" justify="center">
 
 
       <v-card
@@ -14,7 +14,6 @@
           max-width="374"
           outlined
           elevation="3"
-          rounded="xl"
 
       >
 
@@ -54,6 +53,7 @@
 
 <script>
 import axios from "axios";
+import {getColor} from "@/plugins/services";
 
 export default {
   name: "Constructors",
@@ -66,7 +66,9 @@ export default {
 
   mounted() {
     axios
-        .get('https://ergast.com/api/f1/current/constructorStandings.json')
+        .get('current/constructorStandings.json',{
+          baseURL : process.env.VUE_APP_BASE_URL
+        })
         .then((response) => {
           this.loading = false
           this.constructors = response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings
@@ -76,30 +78,7 @@ export default {
     getImgUrl(picture) {
       return require('../assets/img/cars/' + picture + '.png')
     },
-    getColor(ecurie) {
-      switch (ecurie) {
-        case 'Red Bull' :
-          return 'indigo darken-2'
-        case 'Mercedes' :
-          return 'teal accent-3'
-        case 'Ferrari' :
-          return 'red'
-        case 'McLaren' :
-          return 'orange lighten-3'
-        case 'AlphaTauri' :
-          return 'light-blue darken-4'
-        case 'Alfa Romeo' :
-          return 'red  lighten-1'
-        case 'Haas F1 Team' :
-          return 'blue-grey lighten-1'
-        case 'Alpine F1 Team' :
-          return 'indigo darken-2'
-        case 'Williams' :
-          return 'blue accent-4'
-        case 'Aston Martin' :
-          return 'teal lighten-1'
-      }
-    }
+    getColor,
   }
 }
 </script>

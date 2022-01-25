@@ -2,24 +2,7 @@
 
   <v-container v-if="!loading" fill-height class="justify-center">
 
-    <v-card v-if="race !== undefined">
-
-      <v-card-title>
-        <v-img max-width="90" :src="getImgUrl(race.Circuit.circuitId)"/>
-        {{ race.Circuit.circuitName }}
-      </v-card-title>
-
-      <v-data-table
-          :headers="headers"
-          :items="result"
-          :loading="loading"
-          :disable-sort="true"
-          loading-text="Loading... Please wait"
-      >
-
-      </v-data-table>
-
-    </v-card>
+    <ResultCard v-if="race !== undefined"  :last-race="race" :loading="loading" :results="result"/>
     <h1 v-else>No results yet</h1>
 
   </v-container>
@@ -27,9 +10,11 @@
 
 <script>
 import axios from "axios";
+import ResultCard from "@/pages/ResultCard";
 
 export default {
   name: "Results",
+  components: {ResultCard},
   data() {
     return {
       round: this.$route.params.id,

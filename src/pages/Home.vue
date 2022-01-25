@@ -44,7 +44,7 @@
           </vac>
         </v-row>
       </v-card>
-      <ResultCCard  :last-race="lastRace" :loading="loading" :results="results"/>
+      <ResultCard :last-race="lastRace" :loading="loading" :results="results"/>
     </v-container>
   </v-img>
 
@@ -52,11 +52,11 @@
 
 <script>
 import axios from "axios";
-import ResultCCard from "@/pages/ResultCard";
+import ResultCard from "@/pages/ResultCard";
 
 export default {
   name: "Home",
-  components: {ResultCCard},
+  components: {ResultCard},
   data() {
     return {
       loading: true,
@@ -84,8 +84,8 @@ export default {
 
   },
   methods: {
-    getStatus(){
-       return   "Time.time"
+    getStatus() {
+      return "Time.time"
     },
     getLastResults() {
       axios
@@ -119,7 +119,8 @@ export default {
 #mycontainer {
   max-width: 1024px;
 }
-#customTitle{
+
+#customTitle {
   letter-spacing: 10px;
 }
 </style>

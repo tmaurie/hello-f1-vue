@@ -55,7 +55,7 @@
 </template>
 <script>
 export default {
-  name: 'ResultCCard',
+  name: 'ResultCard',
   props: {
     lastRace: {},
     loading: {},

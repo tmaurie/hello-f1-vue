@@ -54,7 +54,9 @@ export default {
   },
   mounted() {
     axios
-        .get('https://ergast.com/api/f1/current/driverStandings.json')
+        .get('current/driverStandings.json', {
+          baseURL : process.env.VUE_APP_BASE_URL
+        })
         .then(response => (this.info = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings))
         .finally(() => (this.loaded = true))
 

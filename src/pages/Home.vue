@@ -89,7 +89,9 @@ export default {
     },
     getLastResults() {
       axios
-          .get('https://ergast.com/api/f1/current/last/results.json')
+          .get('current/last/results.json', {
+            baseURL: process.env.VUE_APP_BASE_URL
+          })
           .then((response) => {
             this.loading = false
             this.lastRace = response.data.MRData.RaceTable.Races[0]
@@ -98,7 +100,9 @@ export default {
     },
     getNextRace() {
       axios
-          .get('https://ergast.com/api/f1/current/next.json')
+          .get('current/next.json', {
+            baseURL: process.env.VUE_APP_BASE_URL
+          })
           .then((response) => {
             this.nextRaceLoading = false
             this.nextRace = response.data.MRData.RaceTable.Races

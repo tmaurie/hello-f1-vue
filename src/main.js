@@ -11,6 +11,7 @@ import Constructors from "@/pages/Constructors";
 import Results from "@/components/Results";
 import timeline from "vue-tweet-embed/src/timeline";
 import News from "@/pages/News";
+import Seasons from "@/pages/Seasons";
 
 Vue.use(timeline)
 Vue.use(vueAwesomeCountdown, 'vac') // Component name, `countdown` and `vac` by default
@@ -26,7 +27,8 @@ const router = new VueRouter({
     { path: '/constructorStandings', component: Constructors },
     { path: '/calendar', component: Calendar },
     { path: '/calendar/results/:id', component: Results, name : 'results' },
-    { path: '/news', component: News, name : 'news' }
+    { path: '/news', component: News, name : 'news' },
+    { path: '/seasons', component: Seasons, name : 'seasons' }
   ]
 });
 

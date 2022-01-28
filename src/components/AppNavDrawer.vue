@@ -22,15 +22,17 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-list-item to="/">
-        <v-list-item-icon>
-          <v-icon>mdi-home</v-icon>
-        </v-list-item-icon>
+      <v-list-item-group active-class="primary">
+        <v-list-item to="/">
+          <v-list-item-icon>
+            <v-icon>mdi-home</v-icon>
+          </v-list-item-icon>
 
-        <v-list-item-content>
-          <v-list-item-title>Home</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+          <v-list-item-content>
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list-item-group>
 
       <v-divider></v-divider>
       <v-list
@@ -39,7 +41,7 @@
 
         <v-list-item-group
             v-model="group"
-            active-class="primary--text"
+            active-class="primary"
         >
 
           <v-list-item
@@ -62,15 +64,18 @@
 
       </v-list>
       <v-divider></v-divider>
-      <v-list-item to="/news">
-        <v-list-item-icon>
-          <v-icon>mdi-newspaper</v-icon>
-        </v-list-item-icon>
+      <v-list-item-group active-class="primary">
+        <v-list-item to="/news">
+          <v-list-item-icon>
+            <v-icon>mdi-newspaper</v-icon>
+          </v-list-item-icon>
 
-        <v-list-item-content>
-          <v-list-item-title>Latest news</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+          <v-list-item-content>
+            <v-list-item-title>Latest news</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list-item-group>
+
       <template v-slot:append>
         <div class="pa-2">
           <v-btn block href="https://github.com/tmaurie/hello-f1-vue" target="_blank">
@@ -113,6 +118,7 @@ export default {
       {text: 'Drivers Standings', icon: 'mdi-racing-helmet', route: '/driverStandings'},
       {text: 'Constructor Standings', icon: 'mdi-car-sports', route: '/constructorStandings'},
       {text: 'Calendar', icon: 'mdi-calendar', route: '/calendar'},
+      {text: 'Seasons', icon: 'mdi-calendar-multiple', route: '/seasons'},
     ],
   }),
   watch: {
@@ -123,7 +129,7 @@ export default {
 }
 </script>
 <style>
-#title--f1{
+#title--f1 {
   font-family: "Grenze", sans-serif;
   font-size: 2.5rem;
 }

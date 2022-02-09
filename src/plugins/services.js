@@ -7,7 +7,7 @@ export const getColor = (ecurie) => {
         case 'Ferrari' :
             return 'red'
         case 'McLaren' :
-            return 'orange lighten-3'
+            return 'orange darken-1'
         case 'AlphaTauri' :
             return 'light-blue darken-4'
         case 'Alfa Romeo' :
@@ -20,6 +20,10 @@ export const getColor = (ecurie) => {
             return 'blue accent-4'
         case 'Aston Martin' :
             return 'teal lighten-1'
+        case 'Racing Point' :
+            return 'purple accent-1'
+        case 'Renault' :
+            return 'amber darken-1'
     }
 
 }

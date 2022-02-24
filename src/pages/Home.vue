@@ -18,8 +18,12 @@
 
             <p>
               {{ nextRace[0].Circuit.circuitName }} |
-              {{ nextRace[0].date }}
-              <span class="font-italic text-muted">({{ nextRaceUTCtime }} UTC)</span>
+              {{ new Date(nextRace[0].date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric"
+            })}}
+              <span class="font-italic text-muted">({{ nextRace[0].time.slice(0, -4) }} UTC)</span>
             </p>
 
 

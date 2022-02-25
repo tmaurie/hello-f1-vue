@@ -41,6 +41,7 @@
           <v-card
               flat width="300"
               :color="hover  ?  'primary' : 'transparent'"
+              @click.stop="getResults(race.season, race.round)"
           >
             <v-container fluid class="pa-1 ">
               <v-row>
@@ -86,21 +87,30 @@
         </v-hover>
 
       </v-row>
+      <v-card v-if="resultModel">
+        <ResultCard :last-race="race" :loading="loading" :results="results"/>
+      </v-card>
     </v-container>
   </v-container>
 </template>
 
 <script>
 import axios from "axios";
+import ResultCard from "@/pages/ResultCard";
 
 export default {
   name: "Seasons",
+  components: {ResultCard},
   data() {
     return {
+      loading: true,
+      resultModel : false,
       seasons: [],
       season: Object,
       drivers: [],
       constructors: [],
+      results : [],
+      race : null,
       model: null,
     }
   },
@@ -122,6 +132,7 @@ export default {
       axios.get(`${year}.json`, {
         baseURL: process.env.VUE_APP_BASE_URL
       }).then((response) => {
+        this.resultModel = false
         this.season = response.data.MRData.RaceTable.Races
       })
       axios.get(`${year}/constructorStandings.json`, {
@@ -133,6 +144,16 @@ export default {
         baseURL: process.env.VUE_APP_BASE_URL
       }).then((response) => {
         this.drivers = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings
+      })
+    },
+    getResults(year, round) {
+      axios.get(`${year}/${round}/results.json`, {
+        baseURL: process.env.VUE_APP_BASE_URL
+      }).then((response) => {
+        this.loading = false
+        this.resultModel = true
+        this.race = response.data.MRData.RaceTable.Races[0]
+        this.results = response.data.MRData.RaceTable.Races[0].Results
       })
     }
   }

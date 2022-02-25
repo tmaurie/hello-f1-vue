@@ -7,7 +7,7 @@
     <v-card-title>
 
       <v-img max-width="90" :src="getImgUrl(lastRace.Circuit.circuitId)"/>
-      <h3> {{ lastRace.raceName }}</h3> &nbsp;| {{ lastRace.Circuit.circuitName }}
+      <h2> {{ lastRace.raceName }}</h2> &nbsp;| {{ lastRace.Circuit.circuitName }}
 
 
     </v-card-title>
@@ -40,7 +40,7 @@
             </v-chip>
           </td>
           <td v-if="item.Time">
-            <v-chip :color="item.FastestLap.rank === '1' ? 'purple' : ''">{{ item.Time.time }}</v-chip>
+            <v-chip :color="item.FastestLap !== undefined && item.FastestLap.rank === '1' ? 'purple' : ''">{{ item.Time.time }}</v-chip>
           </td>
           <td v-else>{{ item.status }}</td>
           <td>{{ item.points }}</td>
@@ -66,7 +66,7 @@ export default {
   methods :{
 
     getImgUrl(picture) {
-      return require('../assets/img/tracks/' + picture + '.png')
+      return require('../assets/img/tracks/' + picture + '.png') || ''
     },
     getColor
   }

@@ -1,8 +1,5 @@
 <template>
-
-
   <v-container>
-
     <v-banner>
       <span class="text-h4 text-center">Driver's standings</span>
     </v-banner>
@@ -13,16 +10,8 @@
           :key="idx"
           class="driver"
           :class="driver.Constructors[0].constructorId"
-          :fname="driver.Driver.givenName"
-          :lname="driver.Driver.familyName"
-          :nationality="driver.Driver.nationality"
-          :ecurie="driver.Constructors[0].name"
-          :driver-id="driver.Driver.driverId"
-          :wins="driver.wins"
-          :position="driver.position"
-          :points="driver.points"
+          :driver="driver"
       >
-
       </DriverCard>
     </v-row>
     <v-row no-gutters justify="center" v-else>
@@ -35,8 +24,6 @@
       </v-skeleton-loader>
     </v-row>
   </v-container>
-
-
 </template>
 
 <script>
@@ -55,7 +42,7 @@ export default {
   mounted() {
     axios
         .get('current/driverStandings.json', {
-          baseURL : process.env.VUE_APP_BASE_URL
+          baseURL: process.env.VUE_APP_BASE_URL
         })
         .then(response => (this.info = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings))
         .finally(() => (this.loaded = true))

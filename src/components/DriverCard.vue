@@ -6,7 +6,7 @@
   >
     <v-card
         flat width="500"
-        :color="hover ? getColor(ecurie): 'transparent'"
+        :color="hover ? getColor(driver.Constructors[0].name): 'transparent'"
     >
       <v-container fluid class="pa-1 ">
         <v-row>
@@ -17,30 +17,30 @@
                 <div>
                   <v-card-title
                       class="text-h5"
-                  >{{ fname }} {{ lname }}
+                  >{{ driver.Driver.givenName }} {{ driver.Driver.familyName }}
                   </v-card-title>
 
-                  <v-card-subtitle v-text="ecurie"></v-card-subtitle>
+                  <v-card-subtitle v-text="driver.Constructors[0].name"></v-card-subtitle>
 
-                  <v-card-actions >
-                    <v-chip-group >
-                      <v-chip style="background-color: #f6cf3e" v-if="position==='1'">
-                        <v-icon>mdi-podium-gold</v-icon> &nbsp; {{ position }}
+                  <v-card-actions>
+                    <v-chip-group>
+                      <v-chip style="background-color: #f6cf3e" v-if="driver.position==='1'">
+                        <v-icon>mdi-podium-gold</v-icon> &nbsp; {{ driver.position }}
                       </v-chip>
-                      <v-chip style="background-color: #bdbdbb" v-else-if="position==='2'">
-                        <v-icon>mdi-podium-silver</v-icon> &nbsp; {{ position }}
+                      <v-chip style="background-color: #bdbdbb" v-else-if="driver.position==='2'">
+                        <v-icon>mdi-podium-silver</v-icon> &nbsp; {{ driver.position }}
                       </v-chip>
-                      <v-chip style="background-color: #b6822f" v-else-if="position==='3'">
-                        <v-icon>mdi-podium-bronze</v-icon> &nbsp; {{ position }}
+                      <v-chip style="background-color: #b6822f" v-else-if="driver.position==='3'">
+                        <v-icon>mdi-podium-bronze</v-icon> &nbsp; {{ driver.position }}
                       </v-chip>
                       <v-chip v-else>
-                        <v-icon>mdi-podium</v-icon> &nbsp; {{ position }}
+                        <v-icon>mdi-podium</v-icon> &nbsp; {{ driver.position }}
                       </v-chip>
                       <v-chip>
-                        <v-icon>mdi-trophy</v-icon> &nbsp; {{ wins }} wins
+                        <v-icon>mdi-trophy</v-icon> &nbsp; {{ driver.wins }} wins
                       </v-chip>
                       <v-chip>
-                        <v-icon>mdi-counter</v-icon> &nbsp; {{ points }} pts
+                        <v-icon>mdi-counter</v-icon> &nbsp; {{ driver.points }} pts
                       </v-chip>
                     </v-chip-group>
 
@@ -52,8 +52,8 @@
                     rounded="lg"
                 >
                   <v-img
-                      :class="getColor(ecurie)"
-                      :src="getImgUrl(driverId)"></v-img>
+                      :class="getColor(driver.Constructors[0].name)"
+                      :src="getImgUrl(driver.Driver.driverId)"></v-img>
                 </v-avatar>
 
               </div>
@@ -67,12 +67,15 @@
 
 <script>
 import {getColor} from "@/plugins/services";
+
 export default {
   data: () => ({
     loading: false,
     selection: 3,
   }),
-  props: ['fname', 'lname', 'nationality', 'ecurie', 'driverId', 'wins', 'position', 'points'],
+  props: {
+    driver: {type: Object, default: undefined}
+  },
 
   methods: {
     reserve() {

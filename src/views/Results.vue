@@ -10,7 +10,7 @@
 
 <script>
 import axios from "axios";
-import ResultCard from "@/pages/ResultCard";
+import ResultCard from "@/components/ResultCard";
 
 export default {
   name: "Results",

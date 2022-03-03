@@ -3,7 +3,7 @@ export const getColor = (ecurie) => {
         case 'Red Bull' :
             return 'indigo darken-2'
         case 'Mercedes' :
-            return 'teal accent-3'
+            return 'teal accent-5'
         case 'Ferrari' :
             return 'red'
         case 'McLaren' :

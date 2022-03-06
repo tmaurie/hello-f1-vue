@@ -10,31 +10,10 @@
         :width='$vuetify.breakpoint.smAndDown ? 310 : 360'
         :height='`calc(100vh - ${$vuetify.breakpoint.smAndDown ? "16" : "32"}px)`'
         temporary
+        color="primary"
+        dark
     >
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="text-h6">
-            Hello-F1
-          </v-list-item-title>
-          <v-list-item-subtitle>
-            Menu
-          </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
 
-      <v-list-item-group active-class="primary">
-        <v-list-item to="/">
-          <v-list-item-icon>
-            <v-icon>mdi-home</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>Home</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list-item-group>
-
-      <v-divider></v-divider>
       <v-list
           nav
       >
@@ -43,6 +22,16 @@
             v-model="group"
             active-class="primary"
         >
+          <v-list-item to="/">
+            <v-list-item-icon>
+              <v-icon>mdi-home</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>Home</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-divider></v-divider>
 
           <v-list-item
               v-for="(item, i) in items"
@@ -59,26 +48,27 @@
               <v-list-item-title v-text="item.text"></v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-divider></v-divider>
 
+          <v-list-item to="/news">
+            <v-list-item-icon>
+              <v-icon>mdi-newspaper</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>Latest news</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </v-list-item-group>
 
       </v-list>
-      <v-divider></v-divider>
       <v-list-item-group active-class="primary">
-        <v-list-item to="/news">
-          <v-list-item-icon>
-            <v-icon>mdi-newspaper</v-icon>
-          </v-list-item-icon>
 
-          <v-list-item-content>
-            <v-list-item-title>Latest news</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
       </v-list-item-group>
 
       <template v-slot:append>
-        <div class="pa-2">
-          <v-btn block href="https://github.com/tmaurie/hello-f1-vue" target="_blank">
+        <div class="pa-2 ">
+          <v-btn block light href="https://github.com/tmaurie/hello-f1-vue" target="_blank">
             <v-icon>mdi-github</v-icon>
             Github
           </v-btn>
@@ -88,11 +78,31 @@
 
     <v-app-bar
         app
+        elevate-on-scroll
     >
 
       <v-app-bar-nav-icon aria-label="Nav button" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title id="title--f1">Hello F1</v-toolbar-title>
+      <v-toolbar-title id="title--f1">hello f1</v-toolbar-title>
+
+      <div v-if="$vuetify.breakpoint.lgAndUp">
+
+          <v-btn to="/" class="ml-4" text rounded color="primary">
+            <v-icon>mdi-home</v-icon>
+          </v-btn>
+          <v-btn
+              v-for="(item, i) in items"
+              :key="i"
+              :to="item.route"
+              class="ml-4"
+              text
+
+          >
+            <v-icon left>{{item.icon}}</v-icon>
+            {{ item.text }}
+          </v-btn>
+      </div>
+
       <v-spacer></v-spacer>
 
       <v-btn aria-label="Theme button" icon @click="$vuetify.theme.dark = !$vuetify.theme.dark">
@@ -130,7 +140,9 @@ export default {
 </script>
 <style>
 #title--f1 {
-  font-family: "Grenze", sans-serif;
+  /*font-family: "Grenze", sans-serif;*/
   font-size: 2.5rem;
+  font-weight: bold;
+  color: #FF385C;
 }
 </style>

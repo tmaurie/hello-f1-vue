@@ -13,6 +13,7 @@
           class="mx-6 my-3 "
           max-width="374"
           outlined
+          rounded="lg"
           elevation="3"
 
       >

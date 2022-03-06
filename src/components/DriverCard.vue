@@ -6,28 +6,28 @@
   >
     <v-card
         flat width="500"
+        rounded="lg"
         :color="hover ? getColor(driver.Constructors[0].name): 'transparent'"
     >
       <v-container fluid class="pa-1 ">
         <v-row>
           <v-col cols="12">
-            <v-card elevation="10">
+            <v-card elevation="10" rounded="lg">
               <div class="d-flex flex-no-wrap justify-space-between">
 
                 <div>
-                  <v-card-title
-                      class="text-h5"
-                  >{{ driver.Driver.givenName }} {{ driver.Driver.familyName }}
+                  <v-card-title>
+                      <h5>{{ driver.Driver.givenName }} {{ driver.Driver.familyName }}</h5>
                   </v-card-title>
 
                   <v-card-subtitle v-text="driver.Constructors[0].name"></v-card-subtitle>
 
                   <v-card-actions>
                     <v-chip-group>
-                      <v-chip style="background-color: #f6cf3e" v-if="driver.position==='1'">
+                      <v-chip style="background-color: rgba(210,175,26,0.83)" v-if="driver.position==='1'">
                         <v-icon>mdi-podium-gold</v-icon> &nbsp; {{ driver.position }}
                       </v-chip>
-                      <v-chip style="background-color: #bdbdbb" v-else-if="driver.position==='2'">
+                      <v-chip style="background-color: rgba(189,189,187,0.74)" v-else-if="driver.position==='2'">
                         <v-icon>mdi-podium-silver</v-icon> &nbsp; {{ driver.position }}
                       </v-chip>
                       <v-chip style="background-color: #b6822f" v-else-if="driver.position==='3'">

@@ -1,8 +1,7 @@
 <template>
   <v-container>
-    <v-banner>
-      <span class="text-h4 text-center">Driver's standings</span>
-    </v-banner>
+      <h4 style="font-size: 2rem" class="text-center">Driver's standings</h4>
+
 
     <v-row no-gutters v-if="loaded" justify="center">
       <DriverCard

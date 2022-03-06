@@ -1,56 +1,63 @@
 <template>
-  <v-img class="v-img--blurred" id="hero" :aspect-ratio="10"
-         :src="require('@/assets/img/f1-bg-3.jpg')"
-         gradient="to top, rgba(var(--bg-color),1) 15%, rgba(var(--bg-color),.7) 100%">
+
     <v-container
         id="mycontainer"
-
     >
 
 
-      <v-card class="mt-2" v-if="!nextRaceLoading">
+        <v-card style="border: 3px solid #FF385C;" class="mt-2 pa-3 " v-if="!nextRaceLoading">
 
-        <v-row justify="space-around">
-          <v-card-title class="d-flex flex-column">
-            <h3>
-              Next Race: {{ nextRace[0].raceName }}
-            </h3>
+          <v-row justify="space-around">
+            <v-card-title class="d-flex flex-column">
+              <h2 >
+                Next Race
+              </h2>
 
-            <p>
-              {{ nextRace[0].Circuit.circuitName }} |
-              {{ new Date(nextRace[0].date).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric"
-            })}}
-              <span class="font-italic text-muted">({{ nextRace[0].time.slice(0, -4) }} UTC)</span>
-            </p>
+              <h4 class="text-break">
+                {{ nextRace[0].raceName }} @ {{ nextRace[0].Circuit.circuitName }}
+              </h4>
+
+              <v-chip outlined>
+                {{ new Date(nextRace[0].date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+              })}}
+                ({{ nextRace[0].time.slice(0, -4) }} UTC)
+              </v-chip>
+
+            </v-card-title>
+
+          </v-row>
 
 
-          </v-card-title>
-          <vac :end-time="new Date(nextRaceTimeDate).getTime() ">
-            <template
-                v-slot:process="{ timeObj }">
+          <v-row justify="space-around">
+            <vac :end-time="new Date(nextRaceTimeDate).getTime() ">
+              <template
+                  v-slot:process="{ timeObj }">
 
-              <v-chip-group>
-                <v-chip :x-large="$vuetify.breakpoint.smAndUp"><span
-                    v-text="timeObj.d > 1 ? timeObj.d + ' days' : timeObj.d +' day' "/></v-chip>
-                <v-chip :x-large="$vuetify.breakpoint.smAndUp">{{ `${timeObj.h}` }} hours</v-chip>
-                <v-chip :x-large="$vuetify.breakpoint.smAndUp">{{ `${timeObj.m}` }} minutes</v-chip>
-                <v-chip :x-large="$vuetify.breakpoint.smAndUp" color="primary">{{ `${timeObj.s}` }} seconds</v-chip>
-              </v-chip-group>
+                <v-chip-group>
+                  <v-chip :x-large="$vuetify.breakpoint.smAndUp"><span
+                      v-text="timeObj.d > 1 ? timeObj.d + ' days' : timeObj.d +' day' "/></v-chip>
+                  <v-chip :x-large="$vuetify.breakpoint.smAndUp">{{ `${timeObj.h}` }} hours</v-chip>
+                  <v-chip :x-large="$vuetify.breakpoint.smAndUp">{{ `${timeObj.m}` }} minutes</v-chip>
+                  <v-chip :x-large="$vuetify.breakpoint.smAndUp" color="primary">{{ `${timeObj.s}` }} seconds</v-chip>
+                </v-chip-group>
 
-            </template>
-            <template
-                v-slot:finish>
-              <span>Race in progress</span>
-            </template>
-          </vac>
-        </v-row>
-      </v-card>
-      <ResultCard :last-race="lastRace" :loading="loading" :results="results"/>
+              </template>
+              <template
+                  v-slot:finish>
+                <span>Race in progress</span>
+              </template>
+            </vac>
+          </v-row>
+        </v-card>
+
+        <ResultCard title="Last Race Results" :last-race="lastRace" :loading="loading" :results="results.slice(0,test)"/>
+      <v-row class="mt-4" justify="center">
+        <v-btn color="primary"  rounded outlined v-if="test<20" @click="test=20">Load More </v-btn>
+      </v-row>
     </v-container>
-  </v-img>
 
 </template>
 
@@ -70,6 +77,7 @@ export default {
       nextRaceTime: '',
       nextRaceTimeDate: '',
       results: [],
+      test : 10,
       headers: [
         {text: 'Pos.', value: 'position', align: 'start', sortable: false},
         {text: 'Driver', value: 'Driver.familyName'},
@@ -84,8 +92,6 @@ export default {
     this.getLastResults()
     this.getNextRace()
     this.getStatus()
-
-
   },
   methods: {
     getStatus() {

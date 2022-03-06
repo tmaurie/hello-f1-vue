@@ -1,15 +1,13 @@
 <template>
-  <v-card class="mt-8" v-if="!loading">
+
+  <v-card style="border: 3px solid #FF385C;" class="mt-8 pa-3" v-if="!loading" rounded="lg">
     <v-row justify="center">
-      <h1 id="">Last Race Results</h1>
+      <h1>{{title}}</h1>
     </v-row>
 
     <v-card-title>
-
-      <v-img max-width="90" :src="getImgUrl(lastRace.Circuit.circuitId)"/>
+      <v-img max-width="50" :src="`https://countryflagsapi.com/svg/${lastRace.Circuit.Location.country.toLowerCase()}`" :lazy-src="`https://countryflagsapi.com/svg/${lastRace.Circuit.Location.country.toLowerCase()}`"/>
       <h2> {{ lastRace.raceName }}</h2> &nbsp;| {{ lastRace.Circuit.circuitName }}
-
-
     </v-card-title>
 
     <v-simple-table>
@@ -40,7 +38,9 @@
             </v-chip>
           </td>
           <td v-if="item.Time">
-            <v-chip :color="item.FastestLap !== undefined && item.FastestLap.rank === '1' ? 'purple' : ''">{{ item.Time.time }}</v-chip>
+            <v-chip :color="item.FastestLap !== undefined && item.FastestLap.rank === '1' ? 'purple' : ''">
+              {{ item.Time.time }}
+            </v-chip>
           </td>
           <td v-else>{{ item.status }}</td>
           <td>{{ item.points }}</td>
@@ -61,14 +61,21 @@ export default {
   props: {
     lastRace: {},
     loading: {},
-    results: {}
+    results: {},
+    title : null
   },
-  methods :{
+  methods: {
+
 
     getImgUrl(picture) {
-      return require('../assets/img/tracks/' + picture + '.png') || ''
+      try{
+        return require('../assets/img/tracks/' + picture + '.png')
+      }catch (e){
+        return null
+      }
     },
-    getColor
+    getColor,
+
   }
 }
 </script>

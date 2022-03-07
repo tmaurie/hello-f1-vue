@@ -87,15 +87,16 @@
 
       <div v-if="$vuetify.breakpoint.lgAndUp">
 
-          <v-btn to="/" class="ml-4" text rounded color="primary">
+          <v-btn aria-label="Home" fab small to="/" class="ml-4" text rounded active-class="primary">
             <v-icon>mdi-home</v-icon>
           </v-btn>
           <v-btn
               v-for="(item, i) in items"
               :key="i"
               :to="item.route"
-              class="ml-4"
               text
+              active-class="primary"
+              class="ml-4"
 
           >
             <v-icon left>{{item.icon}}</v-icon>

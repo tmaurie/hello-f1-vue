@@ -78,7 +78,7 @@
 
     <v-app-bar
         app
-        elevate-on-scroll
+        flat
     >
 
       <v-app-bar-nav-icon aria-label="Nav button" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>

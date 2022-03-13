@@ -83,8 +83,10 @@
 
       <v-app-bar-nav-icon aria-label="Nav button" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
+
       <v-toolbar-title id="title--f1">hello f1</v-toolbar-title>
 
+      <v-spacer/>
       <div v-if="$vuetify.breakpoint.lgAndUp">
 
           <v-btn aria-label="Home" fab small to="/" class="ml-4" text rounded active-class="primary">

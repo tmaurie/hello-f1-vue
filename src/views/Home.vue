@@ -1,15 +1,19 @@
 <template>
 
-    <v-container
-        id="mycontainer"
-    >
+  <v-container
+      id="mycontainer"
+  >
 
 
-        <v-card style="border: 3px solid #FF385C;" class="mt-2 pa-3 " v-if="!nextRaceLoading">
+    <v-row justify="center">
+      <v-col cols="12" md="6">
+
+
+        <v-card elevation="6" rounded="lg" class="mt-2 pa-3 " v-if="!nextRaceLoading">
 
           <v-row justify="space-around">
             <v-card-title class="d-flex flex-column">
-              <h2 >
+              <h2>
                 Next Race
               </h2>
 
@@ -18,11 +22,13 @@
               </h4>
 
               <v-chip outlined>
-                {{ new Date(nextRace[0].date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric"
-              })}}
+                {{
+                  new Date(nextRace[0].date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                  })
+                }}
                 ({{ nextRace[0].time.slice(0, -4) }} UTC)
               </v-chip>
 
@@ -52,22 +58,38 @@
             </vac>
           </v-row>
         </v-card>
+      </v-col>
+    </v-row>
+    <v-row justify="space-between">
+      <v-col cols="12" md="8">
+        <ResultCard title="Last Race Results" :last-race="lastRace" :loading="loading"
+                    :results="results.slice(0,test)"/>
+        <v-row class="mt-4" justify="center">
+          <v-btn color="primary" rounded outlined v-if="test<20" @click="test=20">Load More</v-btn>
+        </v-row>
+      </v-col>
+      <v-col cols="12" md="4">
+        <v-card height="840" class="overflow-auto mt-8 pa-3">
+          <Timeline id="f1" sourceType="profile" :options="options"/>
+        </v-card>
+      </v-col>
 
-        <ResultCard title="Last Race Results" :last-race="lastRace" :loading="loading" :results="results.slice(0,test)"/>
-      <v-row class="mt-4" justify="center">
-        <v-btn color="primary"  rounded outlined v-if="test<20" @click="test=20">Load More </v-btn>
-      </v-row>
-    </v-container>
+    </v-row>
+
+
+
+  </v-container>
 
 </template>
 
 <script>
 import axios from "axios";
 import ResultCard from "@/components/ResultCard";
+import {Timeline} from 'vue-tweet-embed'
 
 export default {
   name: "Home",
-  components: {ResultCard},
+  components: {ResultCard, Timeline},
   data() {
     return {
       loading: true,
@@ -77,7 +99,7 @@ export default {
       nextRaceTime: '',
       nextRaceTimeDate: '',
       results: [],
-      test : 10,
+      test: 10,
       headers: [
         {text: 'Pos.', value: 'position', align: 'start', sortable: false},
         {text: 'Driver', value: 'Driver.familyName'},
@@ -131,7 +153,6 @@ export default {
 
 <style scoped>
 #mycontainer {
-  max-width: 1024px;
 }
 
 #customTitle {

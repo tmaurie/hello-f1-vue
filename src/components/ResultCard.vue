@@ -1,15 +1,95 @@
 <template>
 
-  <v-card style="border: 3px solid #FF385C;" class="mt-8 pa-3" v-if="!loading" rounded="lg">
+  <v-card elevation="6" class="mt-8 pa-3" v-if="!loading" rounded="lg">
     <v-row justify="center">
-      <h1>{{title}}</h1>
+      <h1>{{ title }}</h1>
     </v-row>
 
-    <v-card-title>
-      <v-img max-width="50" :src="`https://countryflagsapi.com/svg/${lastRace.Circuit.Location.country.toLowerCase()}`" :lazy-src="`https://countryflagsapi.com/svg/${lastRace.Circuit.Location.country.toLowerCase()}`"/>
-      <h2> {{ lastRace.raceName }}</h2> &nbsp;| {{ lastRace.Circuit.circuitName }}
+    <v-card-title style="justify-content: center">
+      <v-chip-group>
+        <v-chip color="primary"> {{ lastRace.raceName }}</v-chip>
+        <v-chip outlined> {{ lastRace.Circuit.circuitName }}</v-chip>
+      </v-chip-group>
     </v-card-title>
 
+    <v-row justify="center">
+      <v-card
+          class="ma-2"
+          width="300"
+          elevation="1"
+          rounded="lg"
+      >
+        <v-list-item three-line>
+          <v-list-item-avatar
+
+          >
+            <v-icon>mdi-trophy</v-icon>
+          </v-list-item-avatar>
+          <v-list-item-content>
+
+            <v-list-item-title class=" mb-1">
+              {{ results[0].Driver.givenName }} {{ results[0].Driver.familyName }}
+            </v-list-item-title>
+            <v-list-item-subtitle>
+              <v-chip>{{ results[0].Time.time }}</v-chip>
+              <v-chip>{{ results[0].points }}</v-chip>
+            </v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </v-card>
+    </v-row>
+
+
+    <v-row justify="center">
+      <v-card
+          class="ma-2"
+          width="300"
+          elevation="1"
+          rounded="lg"
+      >
+        <v-list-item three-line>
+          <v-list-item-avatar
+
+          >
+            <v-icon>mdi-trophy</v-icon>
+          </v-list-item-avatar>
+          <v-list-item-content>
+
+            <v-list-item-title class=" mb-1">
+              {{ results[1].Driver.givenName }} {{ results[1].Driver.familyName }}
+            </v-list-item-title>
+            <v-list-item-subtitle>
+              <v-chip>{{ results[1].Time.time }}</v-chip>
+              <v-chip>{{ results[1].points }}</v-chip>
+            </v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </v-card>
+      <v-card
+          class="ma-2"
+          width="300"
+          elevation="1"
+          rounded="lg"
+      >
+        <v-list-item three-line>
+          <v-list-item-avatar
+
+          >
+            <v-icon>mdi-trophy</v-icon>
+          </v-list-item-avatar>
+          <v-list-item-content>
+
+            <v-list-item-title class=" mb-1">
+              {{ results[2].Driver.givenName }} {{ results[2].Driver.familyName }}
+            </v-list-item-title>
+            <v-list-item-subtitle>
+              <v-chip>{{ results[2].Time.time }}</v-chip>
+              <v-chip>{{ results[2].points }}</v-chip>
+            </v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </v-card>
+    </v-row>
     <v-simple-table>
       <template v-slot:default>
         <thead>
@@ -62,15 +142,15 @@ export default {
     lastRace: {},
     loading: {},
     results: {},
-    title : null
+    title: null
   },
   methods: {
 
 
     getImgUrl(picture) {
-      try{
+      try {
         return require('../assets/img/tracks/' + picture + '.png')
-      }catch (e){
+      } catch (e) {
         return null
       }
     },

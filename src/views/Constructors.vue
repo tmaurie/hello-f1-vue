@@ -25,7 +25,16 @@
         <v-card-title>
           {{ constructor.Constructor.name }}
           <v-chip-group>
-            <v-chip>
+            <v-chip style="background-color: rgba(210,175,26,0.83)" v-if="constructor.position==='1'">
+              <v-icon>mdi-podium-gold</v-icon> &nbsp; {{ constructor.position }}
+            </v-chip>
+            <v-chip style="background-color: rgba(189,189,187,0.74)" v-else-if="constructor.position==='2'">
+              <v-icon>mdi-podium-silver</v-icon> &nbsp; {{ constructor.position }}
+            </v-chip>
+            <v-chip style="background-color: #b6822f" v-else-if="constructor.position==='3'">
+              <v-icon>mdi-podium-bronze</v-icon> &nbsp; {{ constructor.position }}
+            </v-chip>
+            <v-chip v-else>
               <v-icon>mdi-podium</v-icon> &nbsp; {{ constructor.position }}
             </v-chip>
             <v-chip>

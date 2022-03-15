@@ -1,9 +1,9 @@
 <template>
 
   <v-container>
-    <v-banner>
-      <span class="text-h4 text-center">Constructors standings</span>
-    </v-banner>
+
+    <h4 style="font-size: 2rem" class="text-center">Constructors's standings</h4>
+
     <v-row no-gutters v-if="!loading" justify="center">
 
 

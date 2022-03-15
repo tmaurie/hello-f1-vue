@@ -1,36 +1,43 @@
 <template>
   <v-container>
-    <v-banner>
-      <span class="text-h4 text-center">Seasons</span>
-    </v-banner>
 
-    <v-col
-        class="d-flex"
-        cols="4"
-    >
-      <v-select
-          v-model="model"
-          label="Select a season"
-          outlined
-          :items="seasons"
-          item-text="season"
-          item-value="season"
-          @input="getSeason"
-      ></v-select>
+    <h4 style="font-size: 2rem" class="text-center">Seasons</h4>
 
-    </v-col>
+
+    <v-row justify="center">
+      <v-col
+          class="d-flex"
+          cols="4"
+
+      >
+        <v-select
+
+            v-model="model"
+            label="Select a season"
+            outlined
+            :items="seasons"
+            item-text="season"
+            item-value="season"
+            @input="getSeason"
+        ></v-select>
+
+      </v-col>
+    </v-row>
+
     <v-container v-if="model">
       <v-chip-group>
-        <v-chip  v-if="drivers[0] && drivers[0].points > 0">
-          <v-icon>mdi-trophy</v-icon> World driver champion : {{drivers[0].Driver.givenName}} {{drivers[0].Driver.familyName}}
+        <v-chip v-if="drivers[0] && drivers[0].points > 0">
+          <v-icon>mdi-trophy</v-icon>
+          World driver champion : {{ drivers[0].Driver.givenName }} {{ drivers[0].Driver.familyName }}
 
         </v-chip>
         <v-chip v-if="constructors[0] && constructors[0].points > 0">
-          <v-icon>mdi-trophy-award</v-icon> World constructor champion : {{constructors[0].Constructor.name}}
+          <v-icon>mdi-trophy-award</v-icon>
+          World constructor champion : {{ constructors[0].Constructor.name }}
         </v-chip>
       </v-chip-group>
 
-      <v-row  no-gutters justify="start">
+      <v-row no-gutters justify="start">
 
         <v-hover
             v-for="(race, idx) in season"
@@ -54,11 +61,13 @@
                       <v-list-item-content>
                         <div class="text-overline mb-4">
 
-                          {{ new Date(race.date).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric"
-                        }) }}
+                          {{
+                            new Date(race.date).toLocaleDateString("en-US", {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric"
+                            })
+                          }}
                         </div>
                         <v-list-item-title class="text-h5 mb-1">
                           {{ race.raceName.replace('Grand Prix', 'GP') }}
@@ -104,13 +113,13 @@ export default {
   data() {
     return {
       loading: true,
-      resultModel : false,
+      resultModel: false,
       seasons: [],
       season: Object,
       drivers: [],
       constructors: [],
-      results : [],
-      race : null,
+      results: [],
+      race: null,
       model: null,
     }
   },

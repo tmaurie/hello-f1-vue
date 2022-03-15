@@ -1,10 +1,8 @@
 <template>
 
   <v-container>
-    <v-banner>
-      <span class="text-h4 text-center">Calendar</span>
-    </v-banner>
-    <v-subheader>Click on a race to see results</v-subheader>
+    <h4 style="font-size: 2rem" class="text-center">Calendar</h4>
+    <v-subheader class="justify-center">Click on a race to see results</v-subheader>
 
 
     <v-timeline

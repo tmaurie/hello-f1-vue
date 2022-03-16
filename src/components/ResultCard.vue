@@ -103,7 +103,7 @@
         </thead>
         <tbody>
         <tr
-            v-for="(item,idx) in results"
+            v-for="(item,idx) in results.slice(3)"
             :key="idx"
         >
           <td>{{ item.position }}</td>

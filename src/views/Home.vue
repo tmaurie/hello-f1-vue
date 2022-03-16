@@ -63,9 +63,9 @@
     <v-row justify="space-between">
       <v-col cols="12" md="8">
         <ResultCard title="Last Race Results" :last-race="lastRace" :loading="loading"
-                    :results="results.slice(0,test)"/>
+                    :results="results.slice(0,limit)"/>
         <v-row class="mt-4" justify="center">
-          <v-btn color="primary" rounded outlined v-if="test<20" @click="test=20">Load More</v-btn>
+          <v-btn color="primary" rounded outlined v-if="limit<20" @click="limit=20">Load More</v-btn>
         </v-row>
       </v-col>
       <v-col cols="12" md="4">
@@ -99,7 +99,7 @@ export default {
       nextRaceTime: '',
       nextRaceTimeDate: '',
       results: [],
-      test: 10,
+      limit: 13,
       headers: [
         {text: 'Pos.', value: 'position', align: 'start', sortable: false},
         {text: 'Driver', value: 'Driver.familyName'},

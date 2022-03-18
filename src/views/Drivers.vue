@@ -1,15 +1,16 @@
 <template>
   <v-container>
-      <h4 style="font-size: 2rem" class="text-center">Driver's standings</h4>
+    <h4 style="font-size: 2rem" class="text-center">{{ season }} Driver's standings</h4>
 
 
     <v-row no-gutters v-if="loaded" justify="center">
       <DriverCard
-          v-for="(driver, idx) in info"
+          v-for="(driver, idx) in drivers"
           :key="idx"
           class="driver"
           :class="driver.Constructors[0].constructorId"
           :driver="driver"
+          :season="season"
       >
       </DriverCard>
     </v-row>
@@ -35,7 +36,8 @@ export default {
   data() {
     return {
       loaded: false,
-      info: null
+      drivers: null,
+      season: ''
     }
   },
   mounted() {
@@ -43,7 +45,10 @@ export default {
         .get('current/driverStandings.json', {
           baseURL: process.env.VUE_APP_BASE_URL
         })
-        .then(response => (this.info = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings))
+        .then((response) => {
+          this.season = response.data.MRData.StandingsTable.season
+          this.drivers = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings
+        })
         .finally(() => (this.loaded = true))
 
 

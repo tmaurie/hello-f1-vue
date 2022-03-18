@@ -9,7 +9,7 @@
         rounded="lg"
         :color="hover ? getColor(driver.Constructors[0].name): 'transparent'"
     >
-      <v-container fluid class="pa-1 ">
+      <v-container fluid class="pa-1">
         <v-row>
           <v-col cols="12">
             <v-card elevation="10" rounded="lg">
@@ -17,7 +17,7 @@
 
                 <div>
                   <v-card-title>
-                      <h5>{{ driver.Driver.givenName }} {{ driver.Driver.familyName }}</h5>
+                    <h5>{{ driver.Driver.givenName }} {{ driver.Driver.familyName }} </h5>
                   </v-card-title>
 
                   <v-card-subtitle v-text="driver.Constructors[0].name"></v-card-subtitle>
@@ -74,6 +74,7 @@ export default {
     selection: 3,
   }),
   props: {
+    season : {},
     driver: {type: Object, default: undefined}
   },
 
@@ -82,7 +83,7 @@ export default {
       this.loading = true
     },
     getImgUrl(picture) {
-      return require('../assets/img/drivers/' + picture + '.png')
+      return require('../assets/img/drivers/'+ this.season + '/' + picture + '.png')
     },
     getColor,
 

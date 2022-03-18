@@ -2,7 +2,7 @@
 
   <v-container>
 
-    <h4 style="font-size: 2rem" class="text-center">Constructors's standings</h4>
+    <h4 style="font-size: 2rem" class="text-center"> {{ season }} Constructors's standings </h4>
 
     <v-row no-gutters v-if="!loading" justify="center">
 
@@ -18,7 +18,7 @@
 
       >
 
-        <v-img class="" :class="getColor(constructor.Constructor.name)"
+        <v-img :class="getColor(constructor.Constructor.name)"
                :src='getImgUrl(constructor.Constructor.constructorId)'
                :lazy-src='getImgUrl(constructor.Constructor.constructorId)'></v-img>
         <v-divider></v-divider>
@@ -70,23 +70,25 @@ export default {
   data() {
     return {
       loading: true,
+      season: '',
       constructors: []
     }
   },
 
   mounted() {
     axios
-        .get('current/constructorStandings.json',{
-          baseURL : process.env.VUE_APP_BASE_URL
+        .get('current/constructorStandings.json', {
+          baseURL: process.env.VUE_APP_BASE_URL
         })
         .then((response) => {
           this.loading = false
+          this.season = response.data.MRData.StandingsTable.season
           this.constructors = response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings
         });
   },
   methods: {
     getImgUrl(picture) {
-      return require('../assets/img/cars/' + picture + '.png')
+      return require('../assets/img/cars/' + this.season + '/' + picture + '.png')
     },
     getColor,
   }

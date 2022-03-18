@@ -58,7 +58,7 @@
 
     </v-timeline>
 
-    <v-row no-gutters justify="center"  v-else>
+    <v-row no-gutters justify="center" v-else>
 
 
       <v-hover
@@ -71,8 +71,8 @@
             flat width="400" :to="'results/' + race.round" append
             :color="hover  ?  'primary' : 'transparent'"
         >
-          <v-container  fluid class="pa-1 ">
-            <v-row >
+          <v-container fluid class="pa-1 ">
+            <v-row>
               <v-col cols="12">
 
                 <v-card
@@ -86,12 +86,19 @@
                     ></v-img>
                     <v-list-item-content>
                       <div class="text-overline mb-4">
-                        {{ race.date }}
+                        {{
+                          new Date(race.date).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric"
+                          })
+                        }}
+
                       </div>
                       <v-list-item-title class="text-h5 mb-1">
                         {{ race.raceName.replace('Grand Prix', 'GP') }}
                       </v-list-item-title>
-                      <v-list-item-subtitle>{{ race.Circuit.circuitName }}</v-list-item-subtitle>
+                      <v-list-item-subtitle class="primary--text">{{ race.Circuit.circuitName }}</v-list-item-subtitle>
                     </v-list-item-content>
 
 
@@ -133,7 +140,7 @@ export default {
   mounted() {
     axios
         .get('current/races.json', {
-          baseURL : process.env.VUE_APP_BASE_URL
+          baseURL: process.env.VUE_APP_BASE_URL
         })
         .then((response) => {
           this.loading = false

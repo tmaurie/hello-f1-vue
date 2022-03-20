@@ -5,7 +5,7 @@
   >
 
 
-    <v-row justify="">
+    <v-row justify="center">
       <v-col cols="12" md="6">
 
 
@@ -59,11 +59,7 @@
           </v-row>
         </v-card>
       </v-col>
-      <v-col cols="12" md="6">
-        <v-card elevation="6" rounded="lg" class="mt-2 pa-3 " v-if="!nextRaceLoading">
-          test
-        </v-card>
-      </v-col>
+
     </v-row>
     <v-row justify="space-between">
       <v-col cols="12" md="8">
@@ -75,7 +71,7 @@
       </v-col>
       <v-col cols="12" md="4">
         <v-card height="840" class="overflow-auto mt-8 pa-3">
-          <Timeline id="f1" sourceType="profile" :options="options"/>
+          <Timeline id="f1" sourceType="profile" />
         </v-card>
       </v-col>
 

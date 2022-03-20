@@ -5,7 +5,7 @@
   >
 
 
-    <v-row justify="center">
+    <v-row justify="">
       <v-col cols="12" md="6">
 
 
@@ -17,7 +17,7 @@
                 Next Race
               </h2>
 
-              <h4 class="text-break">
+              <h4 class="text-break text-center">
                 {{ nextRace[0].raceName }} @ {{ nextRace[0].Circuit.circuitName }}
               </h4>
 
@@ -57,6 +57,11 @@
               </template>
             </vac>
           </v-row>
+        </v-card>
+      </v-col>
+      <v-col cols="12" md="6">
+        <v-card elevation="6" rounded="lg" class="mt-2 pa-3 " v-if="!nextRaceLoading">
+          test
         </v-card>
       </v-col>
     </v-row>

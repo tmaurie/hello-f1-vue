@@ -31,8 +31,14 @@
               {{ results[0].Driver.givenName }} {{ results[0].Driver.familyName }}
             </v-list-item-title>
             <v-list-item-subtitle>
-              <v-chip>{{ results[0].Time.time }}</v-chip>
-              <v-chip>{{ results[0].points }}</v-chip>
+              <v-chip>
+                <v-icon left>mdi-timer</v-icon>
+                {{ results[0].Time.time }}
+              </v-chip>
+              <v-chip>
+                <v-icon left>mdi-counter</v-icon>
+                {{ results[0].points }}
+              </v-chip>
             </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -59,8 +65,14 @@
               {{ results[1].Driver.givenName }} {{ results[1].Driver.familyName }}
             </v-list-item-title>
             <v-list-item-subtitle>
-              <v-chip>{{ results[1].Time.time }}</v-chip>
-              <v-chip>{{ results[1].points }}</v-chip>
+              <v-chip>
+                <v-icon left>mdi-timer</v-icon>
+                {{ results[1].Time.time }}
+              </v-chip>
+              <v-chip>
+                <v-icon left>mdi-counter</v-icon>
+                {{ results[1].points }}
+              </v-chip>
             </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -83,8 +95,14 @@
               {{ results[2].Driver.givenName }} {{ results[2].Driver.familyName }}
             </v-list-item-title>
             <v-list-item-subtitle>
-              <v-chip>{{ results[2].Time.time }}</v-chip>
-              <v-chip>{{ results[2].points }}</v-chip>
+              <v-chip>
+                <v-icon left>mdi-timer</v-icon>
+                {{ results[2].Time.time }}
+              </v-chip>
+              <v-chip>
+                <v-icon left>mdi-counter</v-icon>
+                {{ results[2].points }}
+              </v-chip>
             </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>

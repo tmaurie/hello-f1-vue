@@ -84,13 +84,10 @@
           rounded="lg"
       >
         <v-list-item three-line>
-          <v-list-item-avatar
-
-          >
+          <v-list-item-avatar>
             <v-icon>mdi-trophy</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
-
             <v-list-item-title class=" mb-1">
               {{ results[2].Driver.givenName }} {{ results[2].Driver.familyName }}
             </v-list-item-title>

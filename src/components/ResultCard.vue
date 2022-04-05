@@ -21,21 +21,20 @@
       >
         <v-list-item three-line>
           <v-list-item-avatar
-
           >
             <v-icon>mdi-trophy</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
 
             <v-list-item-title class=" mb-1">
-              {{ results[0].Driver.givenName }} {{ results[0].Driver.familyName }}
+              {{ results[0].Driver.givenName }} {{ results[0].Driver.familyName }} <v-chip :color="getColor(results[0].Constructor.name)" small>{{ results[0].Constructor.name }}</v-chip>
             </v-list-item-title>
             <v-list-item-subtitle>
               <v-chip>
                 <v-icon left>mdi-timer</v-icon>
                 {{ results[0].Time.time }}
               </v-chip>
-              <v-chip>
+              <v-chip class="ml-2">
                 <v-icon left>mdi-counter</v-icon>
                 {{ results[0].points }}
               </v-chip>
@@ -62,14 +61,14 @@
           <v-list-item-content>
 
             <v-list-item-title class=" mb-1">
-              {{ results[1].Driver.givenName }} {{ results[1].Driver.familyName }}
+              {{ results[1].Driver.givenName }} {{ results[1].Driver.familyName }} <v-chip :color="getColor(results[1].Constructor.name)" small>{{ results[1].Constructor.name }}</v-chip>
             </v-list-item-title>
             <v-list-item-subtitle>
               <v-chip>
                 <v-icon left>mdi-timer</v-icon>
                 {{ results[1].Time.time }}
               </v-chip>
-              <v-chip>
+              <v-chip class="ml-2">
                 <v-icon left>mdi-counter</v-icon>
                 {{ results[1].points }}
               </v-chip>
@@ -89,14 +88,14 @@
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title class=" mb-1">
-              {{ results[2].Driver.givenName }} {{ results[2].Driver.familyName }}
+              {{ results[2].Driver.givenName }} {{ results[2].Driver.familyName }} <v-chip :color="getColor(results[2].Constructor.name)" small>{{ results[2].Constructor.name }}</v-chip>
             </v-list-item-title>
             <v-list-item-subtitle>
               <v-chip>
                 <v-icon left>mdi-timer</v-icon>
                 {{ results[2].Time.time }}
               </v-chip>
-              <v-chip>
+              <v-chip class="ml-2">
                 <v-icon left>mdi-counter</v-icon>
                 {{ results[2].points }}
               </v-chip>

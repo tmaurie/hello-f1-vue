@@ -18,11 +18,14 @@
           width="300"
           elevation="1"
           rounded="lg"
+          style="border: 2px solid #D2AF1AFF"
       >
         <v-list-item three-line>
-          <v-list-item-avatar
-          >
-            <v-icon>mdi-trophy</v-icon>
+          <v-list-item-avatar>
+            <v-img
+                :class="getColor(results[0].Constructor.name)"
+                :src="getDriverImg(results[0].Driver.driverId)">
+            </v-img>
           </v-list-item-avatar>
           <v-list-item-content>
 
@@ -51,12 +54,16 @@
           width="300"
           elevation="1"
           rounded="lg"
+          style="border: 2px solid #BDBDBBFF"
       >
         <v-list-item three-line>
           <v-list-item-avatar
 
           >
-            <v-icon>mdi-trophy</v-icon>
+            <v-img
+                :class="getColor(results[1].Constructor.name)"
+                :src="getDriverImg(results[1].Driver.driverId)">
+            </v-img>
           </v-list-item-avatar>
           <v-list-item-content>
 
@@ -81,10 +88,14 @@
           width="300"
           elevation="1"
           rounded="lg"
+          style="border: 2px solid #b6822f"
       >
         <v-list-item three-line>
           <v-list-item-avatar>
-            <v-icon>mdi-trophy</v-icon>
+            <v-img
+                :class="getColor(results[2].Constructor.name)"
+                :src="getDriverImg(results[2].Driver.driverId)">
+            </v-img>
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title class=" mb-1">
@@ -104,6 +115,7 @@
         </v-list-item>
       </v-card>
     </v-row>
+
     <v-simple-table>
       <template v-slot:default>
         <thead>
@@ -161,6 +173,13 @@ export default {
   methods: {
 
 
+    getDriverImg(picture){
+      try {
+        return require('../assets/img/drivers/2022/' + picture + '.png')
+      } catch (e) {
+        return null
+      }
+    },
     getImgUrl(picture) {
       try {
         return require('../assets/img/tracks/' + picture + '.png')

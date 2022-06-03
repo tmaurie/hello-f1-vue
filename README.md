@@ -2,6 +2,7 @@
 ##
 See live at [hellof1.netlify.app/](https://hellof1.netlify.app/)
 
+ <img src="public/site.png" alt="screenshot site" >
 
 ## Project setup
 ```

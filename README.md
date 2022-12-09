@@ -2,6 +2,16 @@
 ##
 See live at [hellof1.netlify.app/](https://hellof1.netlify.app/)
 
+## Tech Stack
+
+ - Framework : [VueJS](http://www.vuejs.org)
+ - UI Library : [Vuetify](https://vuetifyjs.com/)
+ - Content : [ergast API](http://ergast.com/mrd/)
+ - Deployment: [Netlify](https://netlify.app/)
+ 
+## Screenshots
+
+ <img src="public/site.png" alt="screenshot site" >
 
 ## Project setup
 ```

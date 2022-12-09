@@ -5,18 +5,14 @@
   >
 
 
-    <v-row justify="center">
+    <v-row justify="center" v-if="nextRace.length>0">
       <v-col cols="12" md="6">
-
-
         <v-card elevation="6" rounded="lg" class="mt-2 pa-3 " v-if="!nextRaceLoading">
-
           <v-row justify="space-around">
             <v-card-title class="d-flex flex-column">
               <h2>
                 Next Race
               </h2>
-
               <h4 class="text-break text-center">
                 {{ nextRace[0].raceName }} @ {{ nextRace[0].Circuit.circuitName }}
               </h4>
@@ -71,12 +67,11 @@
       </v-col>
       <v-col cols="12" md="4">
         <v-card height="840" class="overflow-auto mt-8 pa-3">
-          <Timeline id="f1" sourceType="profile" />
+          <Timeline id="f1" sourceType="profile"/>
         </v-card>
       </v-col>
 
     </v-row>
-
 
 
   </v-container>
@@ -139,9 +134,10 @@ export default {
           .then((response) => {
             this.nextRaceLoading = false
             this.nextRace = response.data.MRData.RaceTable.Races
-            this.nextRaceTimeDate = this.nextRaceTime.concat(
-                this.nextRace[0].date, 'T', this.nextRace[0].time
-            );
+            if (this.nextRace.length > 0) {
+              this.nextRaceTime = this.nextRace[0].date
+              this.nextRaceTimeDate = this.nextRace[0].date + ' ' + this.nextRace[0].time
+            }
 
           });
     },
@@ -156,7 +152,4 @@ export default {
 #mycontainer {
 }
 
-#customTitle {
-  letter-spacing: 10px;
-}
 </style>

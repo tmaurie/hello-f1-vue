@@ -1,19 +1,59 @@
 @import url('https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800&display=swap');
+
 $body-font-family: 'Dosis';
 #app {
   font-family: $body-font-family, sans-serif !important;
-}
-.theme--light {
-  --bg-color: 255, 255, 255;
-  --font-color: 18, 18, 18;
+  //&.theme--dark {
+  //  background-image: linear-gradient( 178.2deg,  rgba(118,8,23,1) 10.9%, rgba(158,12,33,1) 62.6% );
+  //  background-attachment: fixed;
+  //  z-index: 1;
+  //}
+  //
+  //&.theme--light {
+  //  background-image: linear-gradient(-35deg, #f52d35 0%, #da6c6d 100%);
+  //  background-attachment: fixed;
+  //  z-index: 1;
+  //}
+  //
+  //&:after{
+  //  content: "";
+  //  background: url("../img/background.png");
+  //  opacity: .8;
+  //  top: 0;
+  //  left: 0;
+  //  bottom: 0;
+  //  right: 0;
+  //  position: fixed;
+  //  z-index: -1;
+  //}
+  &.theme--light {
+    --bg-color: 255, 255, 255;
+    --font-color: 18, 18, 18;
+    z-index: 1;
+  }
+
+  &.theme--dark {
+    --bg-color: 18, 18, 18;
+    --font-color: 255, 255, 255;
+    z-index: 1;
+  }
+
+  &:after {
+    content: "";
+    background: url("../img/background.png");
+    opacity: .8;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: -1;
+  }
 
 }
+
 
 path {
-  fill : rgb(var(--font-color));
+  fill: rgb(var(--font-color));
 }
 
-.theme--dark {
-  --bg-color: 18, 18, 18;
-  --font-color: 255, 255, 255;
-}

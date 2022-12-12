@@ -2,19 +2,30 @@
 #app {
   font-family: "Dosis", sans-serif !important;
 }
-
-.theme--light {
+#app.theme--light {
   --bg-color: 255, 255, 255;
   --font-color: 18, 18, 18;
+  z-index: 1;
+}
+#app.theme--dark {
+  --bg-color: 18, 18, 18;
+  --font-color: 255, 255, 255;
+  z-index: 1;
+}
+#app:after {
+  content: "";
+  background: url("../img/background.png");
+  opacity: 0.8;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  z-index: -1;
 }
 
 path {
   fill: rgb(var(--font-color));
-}
-
-.theme--dark {
-  --bg-color: 18, 18, 18;
-  --font-color: 255, 255, 255;
 }
 
 /*# sourceMappingURL=styles.css.map */

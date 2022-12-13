@@ -5,8 +5,6 @@
     <h4 style="font-size: 2rem" class="text-center"> {{ season }} Constructors's standings </h4>
 
     <v-row no-gutters v-if="!loading" justify="center">
-
-
       <v-card
           v-for="(constructor, idx) in constructors"
           :key="idx"
@@ -17,13 +15,14 @@
           elevation="3"
 
       >
-
         <v-img :class="getColor(constructor.Constructor.name)"
                :src='getImgUrl(constructor.Constructor.constructorId)'
                :lazy-src='getImgUrl(constructor.Constructor.constructorId)'></v-img>
         <v-divider></v-divider>
         <v-card-title>
           {{ constructor.Constructor.name }}
+        </v-card-title>
+        <v-card-actions>
           <v-chip-group>
             <v-chip style="background-color: rgba(210,175,26,0.83)" v-if="constructor.position==='1'">
               <v-icon>mdi-podium-gold</v-icon> &nbsp; {{ constructor.position }}
@@ -44,10 +43,10 @@
               <v-icon>mdi-trophy</v-icon> &nbsp; {{ constructor.wins }} wins
             </v-chip>
           </v-chip-group>
-        </v-card-title>
-
+        </v-card-actions>
       </v-card>
     </v-row>
+
     <v-row v-else>
       <v-skeleton-loader
           v-for="i in 10"

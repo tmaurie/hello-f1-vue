@@ -1,8 +1,9 @@
 <template>
 
-  <v-container id="mycontainer"  v-if="!loading" :fill-height="race === undefined"  class="justify-center" >
+  <v-container id="mycontainer" v-if="!loading" :fill-height="race === undefined" class="justify-center">
 
-    <ResultCard v-if="race !== undefined"  :title="`Round #${race.round} `" :last-race="race" :loading="loading" :results="result"/>
+    <ResultCard v-if="race !== undefined" :title="`Round #${race.round} `" :last-race="race" :loading="loading"
+                :results="result"/>
     <h1 v-else>No results yet</h1>
 
   </v-container>

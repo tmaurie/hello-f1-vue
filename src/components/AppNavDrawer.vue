@@ -79,31 +79,34 @@
     <v-app-bar
         app
         flat
+        :color="transparent ? 'transparent' : 'primary'"
     >
 
-      <v-app-bar-nav-icon aria-label="Nav button" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <v-app-bar-nav-icon v-if="$vuetify.breakpoint.smAndDown" aria-label="Nav button"
+                          @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
 
-      <v-toolbar-title id="title--f1">hello f1</v-toolbar-title>
+      <v-toolbar-title :style="{'color' : transparent ? 'primary' : 'white'}" id="title--f1">hello f1</v-toolbar-title>
 
       <v-spacer/>
       <div v-if="$vuetify.breakpoint.lgAndUp">
 
-          <v-btn aria-label="Home" fab small to="/" class="ml-4" text rounded active-class="primary">
-            <v-icon>mdi-home</v-icon>
-          </v-btn>
-          <v-btn
-              v-for="(item, i) in items"
-              :key="i"
-              :to="item.route"
-              text
-              active-class="primary"
-              class="ml-4"
+        <v-btn aria-label="Home" fab small to="/" class="ml-4" text rounded active-class="primary">
+          <v-icon>mdi-home</v-icon>
+        </v-btn>
+        <v-btn
+            v-for="(item, i) in items"
+            :key="i"
+            :to="item.route"
+            text
+            active-class="primary"
+            class="ml-4"
 
-          >
-            <v-icon left>{{item.icon}}</v-icon>
-            {{ item.text }}
-          </v-btn>
+        >
+          <v-icon left>{{ item.icon }}</v-icon>
+          {{ item.text }}
+        </v-btn>
       </div>
 
       <v-spacer></v-spacer>
@@ -124,6 +127,7 @@
 <script>
 export default {
   data: () => ({
+    transparent: true,
     drawer: false,
     group: null,
     selectedItem: 0,
@@ -139,13 +143,22 @@ export default {
       this.drawer = false
     },
   },
+  mounted() {
+    window.onscroll = () => {
+      this.changeColor();
+    };
+  },
+  methods: {
+    changeColor() {
+      this.transparent = !(document.body.scrollTop > 30 ||
+          document.documentElement.scrollTop > 30);
+    },
+  },
 }
 </script>
 <style>
 #title--f1 {
-  /*font-family: "Grenze", sans-serif;*/
   font-size: 2.5rem;
   font-weight: bold;
-  color: #FF385C;
 }
 </style>

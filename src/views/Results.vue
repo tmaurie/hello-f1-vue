@@ -33,7 +33,7 @@ export default {
   },
   mounted() {
     axios
-        .get('https://ergast.com/api/f1/current/' + this.round + '/results.json')
+        .get('https://api.jolpi.ca/ergast/f1/current/' + this.round + '/results.json')
         .then((response) => {
           this.loading = false
           this.race = response.data.MRData.RaceTable.Races[0]

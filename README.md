@@ -6,7 +6,7 @@ See live at [hellof1.netlify.app/](https://hellof1.netlify.app/)
 
  - Framework : [VueJS](http://www.vuejs.org)
  - UI Library : [Vuetify](https://vuetifyjs.com/)
- - Content : [ergast API](http://ergast.com/mrd/)
+ - Content : [jolpica API](https://api.jolpi.ca/ergast/f1/)
  - Deployment: [Netlify](https://netlify.app/)
  
 ## Screenshots

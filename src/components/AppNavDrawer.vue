@@ -158,7 +158,7 @@ export default {
 </script>
 <style>
 #title--f1 {
+  font-family: "Modak", sans-serif;
   font-size: 2.5rem;
-  font-weight: bold;
 }
 </style>
